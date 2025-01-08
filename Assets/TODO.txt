@@ -1,0 +1,40 @@
+Navigation:
+Webbplatsen ska besto av minst fem sidor
+Ska gå att hoppa mellan sidorna med en konsekvent meny
+Menyn ska även aktivt visa vilken sida man är på
+
+Innehåll:
+Alla sidor ska ha Innehåll
+Innehåll som måste finnas
+  Presentation av dig själv
+  CV
+  Portfolioprojekt
+Minst en bild
+Lorem Isum-text kan användas för att fylla ut text
+
+Portfolio
+Ska vara en lista av projekt projekt med rubrik & bild samt en mer info knapp
+Mer info knappen ska skapa en modal-popup med mer information (html & css)
+
+
+Layout krav
+Ska någonstans ha två eller flera kolumner
+Ska ha ett eller flera typsnitt
+
+
+Påskägg
+Två påskägg
+Första ska aktiveras när användaren trycker någonstans udda och då ska backgrounded bytas ut.
+Andra ska aktiveras när användaren skriver en kombination ex 1337, ska då komma upp någon rolig modal-popup.
+
+
+Tekniska krav
+Ska vara kompatibel med moderna webbläsare
+HTML ska vara korrekt
+CSS ska vara responsive
+Ska en CSS print som gör att CV-sidan blir snygg
+JS får inte vara i HTML filer
+Påskägg ska fungera på alla sidor
+
+Deploy
+Github Pages
