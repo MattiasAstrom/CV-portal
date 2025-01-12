@@ -38,3 +38,36 @@ Tekniska krav:
 
 Deploy:
 - Github Pages
+
+
+Things to figure out next:
+- layout in general.
+- specific layout per page.
+- colors
+- displaying projects
+
+https://www.freecodecamp.org/news/15-web-developer-portfolios-to-inspire-you-137fb1743cae/
+https://alvarotrigo.com/blog/web-developer-portfolio-examples/
+https://www.hostinger.com/tutorials/website-design-inspiration
+https://www.hostinger.com/tutorials/web-developer-portfolio
+
+
+https://duckduckgo.com/?t=ffab&q=webdev+portfolios+do%27s+and+don%27ts&ia=web
+
+
+Header design:
+(at the top it fades out, probably want 100% width there instead)
+https://www.lokkeestudios.com/project/carolineseiffert#project-gallery
+
+creme warm colors basic webdesign, add darkmode.
+
+interesting little macbook animation;
+https://www.chrisabra.co/
+
+
+CARD LAYOUT;
+Projects 3x3 cards
+title
+shortdescibtion
+techstack
+top right icon for more info and github repository

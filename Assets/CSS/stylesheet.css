@@ -7,8 +7,6 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 nav ol {
@@ -50,8 +48,8 @@ nav a.active {
 
 .scroll-to-top {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   background-color: #333;
   color: white;
   border: none;
@@ -80,25 +78,50 @@ footer {
 
 .image-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 10px;
-  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 10px;
 }
 
 .image-container img {
-  background-color: black;
-  width: auto;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  background-position: center;
-  background-size: cover;
+  width: 100%;
+  max-width: 350px;
+  object-fit: cover;
+  border: 1px solid blue;
 }
 
 .image-container img:hover {
   transform: scale(1.05);
+}
+.panda-container {
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: no-wrap;
+}
+
+.PandaPicture {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  margin: 0%;
+  padding: 0%;
+}
+
+.box-container {
+  background-color: black;
+  height: 150px;
+  width: 150px;
+  border: 1px solid blue;
+  background-image: url(../images/Panda.jpg);
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
 }
 
 @media (max-width: 600px) {
@@ -122,4 +145,11 @@ footer {
   justify-content: center;
   margin-bottom: 0; /* Remove any bottom margin */
   border: #333;
+}
+
+@keyframes scale {
+  to {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
 }
