@@ -9,8 +9,26 @@ html {
   padding: 0;
 }
 
-body {
-  background-color: #9da1a5;
+main {
+  background-color: aquamarine;
+  height: 35vh;
+  text-align: center;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  height: 5vh;
+}
+
+article {
+  background-color: beige;
+  width: 80%;
+  display: inline-block;
+  margin: 1rem;
 }
 
 .container {
@@ -75,14 +93,6 @@ body {
 
 .scroll-to-top:hover {
   background-color: #575757;
-}
-
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  margin: 0;
 }
 
 .image-container {
@@ -157,6 +167,88 @@ footer {
   border: #333;
 }
 
+.magic {
+  background-color: #f9ca24;
+  color: #000;
+  border: 0;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 24px 40px;
+  margin-bottom: 24px;
+  margin-left: 45vh;
+  cursor: pointer;
+  position: relative;
+  top: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 3px rgba(249, 202, 36, 0.5);
+  z-index: 100;
+}
+
+.magic:focus {
+  outline: none;
+}
+
+.magic:active {
+  box-shadow: none;
+  transform: translateY(2px);
+}
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 500px;
+  width: 500px;
+
+  margin-left: 25vh;
+  margin-bottom: 25vh;
+  position: relative;
+  transition: 0.4s ease;
+}
+
+.boxes.big {
+  width: 600px;
+  height: 600px;
+  margin-left: 25vh;
+  margin-top: 2vh;
+}
+
+.boxes.big .box {
+  transform: rotateZ(360deg);
+}
+
+.box {
+  background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWM4NTdlMDVxaXBqY2YweXY3dXBkbjZhaTlqeDNhd3QwZHdrZDI2NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kPVTbiTORIopy/giphy.gif");
+  /* background-image: url("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExazF0c2U0dmt5NjJmd29memV4aGp5aDgxbGxxYjk4YW8wZnhtcDFhbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/78XCFBGOlS6keY1Bil/giphy.gif"); */
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: 500px 500px;
+  position: relative;
+  height: 125px;
+  width: 125px;
+  transition: 0.4s ease;
+}
+
+.box::after {
+  content: "";
+  background-color: #f6e58d;
+  position: absolute;
+  top: 8px;
+  right: -15px;
+  height: 100%;
+  width: 15px;
+  transform: skewY(45deg);
+}
+.box::before {
+  content: "";
+  background-color: #f9ca24;
+  position: absolute;
+  bottom: -15px;
+  left: 8px;
+  height: 15px;
+  width: 100%;
+  transform: skewX(45deg);
+}
 /* .circle {
   position: absolute;
   border-radius: 50%;
@@ -276,7 +368,7 @@ button {
   margin: 10px;
 }
 
-button:hover {
+nav button:hover {
   background-color: #575757;
 }
 

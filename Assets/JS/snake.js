@@ -135,18 +135,23 @@ function update() {
 
 // Control the snake's direction using the arrow keys
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowUp" && dy === 0) {
-    dx = 0;
-    dy = -gridSize;
-  } else if (e.key === "ArrowDown" && dy === 0) {
-    dx = 0;
-    dy = gridSize;
-  } else if (e.key === "ArrowLeft" && dx === 0) {
-    dx = -gridSize;
-    dy = 0;
-  } else if (e.key === "ArrowRight" && dx === 0) {
-    dx = gridSize;
-    dy = 0;
+  // Only prevent default if the game is running
+  if (isGameRunning) {
+    e.preventDefault();
+
+    if (e.key === "ArrowUp" && dy === 0) {
+      dx = 0;
+      dy = -gridSize;
+    } else if (e.key === "ArrowDown" && dy === 0) {
+      dx = 0;
+      dy = gridSize;
+    } else if (e.key === "ArrowLeft" && dx === 0) {
+      dx = -gridSize;
+      dy = 0;
+    } else if (e.key === "ArrowRight" && dx === 0) {
+      dx = gridSize;
+      dy = 0;
+    }
   }
 });
 
