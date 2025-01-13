@@ -19,7 +19,7 @@ window.onscroll = function () {
 document.addEventListener("DOMContentLoaded", () => {
   // Correctly formatted HTML string for navbar
   document.getElementById("navbar-container").innerHTML = `
-    <nav>
+    <nav class="nav">
       <ol>
         <li>
           <a href="./index.html">Home</a>
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Highlight the active page
   const currentPage = window.location.pathname.split("/").pop(); // Get the current page name (e.g., index.html)
-  const links = document.querySelectorAll("nav a");
+  const links = document.querySelectorAll(".nav a");
 
   links.forEach((link) => {
     // Check if the link's href matches the current page

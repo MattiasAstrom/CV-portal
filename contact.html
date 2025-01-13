@@ -3,22 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panda</title>
+    <title>Contact</title>
     <link rel="stylesheet" type="text/css" href="Assets/CSS/stylesheet.css" />
   </head>
   <body>
     <div id="navbar-container"></div>
 
-    <div class="image-container">
-      <img src="./Assets/images/codingart.png" alt="" />
-      <img src="./Assets/images/howtodebug.png" alt="" />
-      <img src="./Assets/images/pendolumswing.png" alt="" />
-      <img src="./Assets/images/copilot.png" alt="" />
-      <img src="./Assets/images/stackoverflow.jpg" alt="" />
+    <div class="snake-game-container">
+      <canvas id="snake-gameCanvas" width="400" height="400"></canvas>
+      <div id="gameStatus">
+        <button id="startBtnSnake">Start Game</button>
+        <div id="gameOverMessage" style="display: none">
+          <p>Game Over! Score: <span id="finalScore"></span></p>
+          <button id="retryBtnSnake" style="display: none">Retry</button>
+        </div>
+      </div>
     </div>
 
-    <footer style="background-color: #2e5077">this is the footer.</footer>
+    <footer style="background-color: #2e5077a4">this is the footer.</footer>
     <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
     <script src="Assets/JS/nav.js"></script>
+    <script src="Assets/JS/snake.js"></script>
   </body>
 </html>
