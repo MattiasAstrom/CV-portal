@@ -54,18 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Create and append arrow buttons
-  const leftArrow = document.createElement("div");
-  leftArrow.classList.add("arrow-left");
-  leftArrow.innerHTML = "&larr;";
-  document.body.appendChild(leftArrow);
+  // Attach click events to arrows
+  const leftArrow = document.querySelector(".arrow-left");
+  const rightArrow = document.querySelector(".arrow-right");
 
-  const rightArrow = document.createElement("div");
-  rightArrow.classList.add("arrow-right");
-  rightArrow.innerHTML = "&rarr;";
-  document.body.appendChild(rightArrow);
-
-  // Attach click event to arrows
   leftArrow.addEventListener("click", () => {
     if (currentIndex > 0) {
       currentIndex--;
