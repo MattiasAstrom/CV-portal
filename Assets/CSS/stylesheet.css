@@ -11,12 +11,19 @@ html {
 
 main {
   background-color: aquamarine;
-  height: 35vh;
+  height: 90vh;
   text-align: center;
 }
 
+article {
+  background-color: beige;
+  /* width: 80%; */
+  display: inline-block;
+  margin: 1rem;
+}
+
 footer {
-  background-color: #333;
+  background-color: rgb(50, 58, 58);
   color: white;
   text-align: center;
   padding: 10px;
@@ -24,11 +31,14 @@ footer {
   height: 5vh;
 }
 
-article {
-  background-color: beige;
-  width: 80%;
-  display: inline-block;
-  margin: 1rem;
+header {
+  background-color: rgb(50, 58, 58);
+  height: 5vh;
+  text-align: center;
+  /* background-image: url("/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
 }
 
 .container {
@@ -63,7 +73,6 @@ article {
 
 .nav {
   background-color: #333;
-  padding: 10px;
 }
 
 .nav a.active {
@@ -143,18 +152,53 @@ article {
   background-size: cover;
 }
 
-@media (max-width: 600px) {
-  .image-container img {
-    width: 50%;
-  }
+/* Default styles for mobile nav - Hidden by default */
+#navbar-links,
+.mobile-nav,
+.hamburger-menu {
+  display: none;
 }
 
-@media (max-width: 480px) {
+/* Styles for mobile screen sizes */
+@media (max-width: 600px) {
+  /* Image container responsive */
   .image-container img {
     width: calc(50% - 10px);
   }
-  nav ol {
+
+  /* Navbar styling for mobile */
+  .nav ol {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    display: block; /* Makes navbar block for mobile */
+  }
+
+  .nav ol li {
+    margin-bottom: 10px;
+  }
+
+  /* Mobile menu links */
+  #navbar-links.active {
+    display: block; /* Show the menu when active */
+  }
+
+  /* Show hamburger menu on mobile */
+  .hamburger-menu {
     display: block;
+    cursor: pointer;
+    font-size: 30px;
+    margin-right: 20px;
+  }
+
+  /* Mobile navigation container */
+  .mobile-nav {
+    display: block;
+  }
+
+  /* Hide the default navbar container */
+  #navbar-container {
+    display: none;
   }
 }
 
@@ -456,4 +500,23 @@ nav button:hover {
 .arrow-left.disabled,
 .arrow-right.disabled {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.card-container {
+  width: 90%;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  background-color: #3b3434;
+  border: 2px solid red;
+}
+
+.card {
+  background-color: black;
+  border: 2px solid red;
+  height: 1rem;
+  width: 40%;
 }
