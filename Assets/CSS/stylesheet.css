@@ -40,7 +40,6 @@ header {
   background-size: cover;
   background-repeat: no-repeat; */
 }
-
 .container {
   max-width: 100%;
   margin: 0 auto;
@@ -171,6 +170,7 @@ header {
     flex-direction: column;
     align-items: center;
     padding: 0;
+    text-align: center;
     display: block; /* Makes navbar block for mobile */
   }
 
@@ -190,7 +190,14 @@ header {
     font-size: 30px;
     margin-right: 20px;
   }
-
+  .nav a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    background-color: #333;
+  }
   /* Mobile navigation container */
   .mobile-nav {
     display: block;

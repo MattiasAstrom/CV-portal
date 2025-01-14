@@ -1,10 +1,12 @@
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 function toggleMenu() {
   const navbarLinks = document.getElementById("navbar-links");
   navbarLinks.classList.toggle("active");
 }
+
 // Show/Hide the "Scroll to Top" button based on scroll position
 window.onscroll = function () {
   const button = document.querySelector(".scroll-to-top");
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </li>
       </ol>
     </nav>
+    
   `;
 
   // Highlight the active page
