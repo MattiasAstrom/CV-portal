@@ -39,10 +39,22 @@ header {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; */
+  left: 0;
+  right: 0;
+  margin: 0;
 }
+
 .container {
   max-width: 100%;
   margin: 0 auto;
+}
+
+.nav {
+  position: relative;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
 .nav ol {
@@ -126,18 +138,22 @@ header {
   transform: scale(1.05);
 }
 .panda-container {
-  white-space: nowrap;
-  display: flex;
-  flex-wrap: no-wrap;
+  width: 50%;
+  border: 2px solid blue;
+  padding: 5%;
+  position: relative;
 }
 
 .PandaPicture {
-  width: 50%;
+  border: 2px solid red;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   height: 100%;
-  display: flex;
-  position: relative;
-  margin: 0%;
-  padding: 0%;
+  object-fit: contain;
 }
 
 .box-container {
@@ -163,6 +179,15 @@ header {
   /* Image container responsive */
   .image-container img {
     width: calc(50% - 10px);
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #333;
+      position: absolute;
+      top: 60px; /* To avoid overlap with the header */
+      width: 100%;
+    }
   }
 
   /* Navbar styling for mobile */
