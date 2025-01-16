@@ -13,6 +13,12 @@ main {
   background-color: aquamarine;
   height: 90vh;
   text-align: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  outline: 4px solid yellow;
 }
 
 article {
@@ -253,11 +259,9 @@ header {
   margin-bottom: 24px;
   margin-left: 45vh;
   cursor: pointer;
-  position: relative;
   top: 20px;
   letter-spacing: 1px;
   box-shadow: 0 3px rgba(249, 202, 36, 0.5);
-  z-index: 100;
 }
 
 .magic:focus {
@@ -551,4 +555,16 @@ nav button:hover {
   border: 2px solid red;
   height: 1rem;
   width: 40%;
+}
+
+.fps-game-container {
+  background-color: #333;
+  border: 24px solid white;
+}
+
+#webgl-canvas {
+  background-color: #000;
+  border: 1px solid #fff;
+  width: 100%;
+  height: 500px;
 }

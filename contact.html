@@ -21,25 +21,39 @@
       </nav>
     </header>
 
-    <div class="snake-game-container">
-      <canvas id="snake-gameCanvas" width="400" height="400"></canvas>
-      <div id="gameStatus">
-        <button id="startBtnSnake">Start Game</button>
-        <div id="gameOverMessage" style="display: none">
-          <p>Game Over! Score: <span id="finalScore"></span></p>
-          <button id="retryBtnSnake" style="display: none">Retry</button>
+    <main>
+      <div class="snake-game-container">
+        <canvas id="snake-gameCanvas" width="400" height="400"></canvas>
+        <div id="gameStatus">
+          <button id="startBtnSnake">Start Game</button>
+          <div id="gameOverMessage" style="display: none">
+            <p>Game Over! Score: <span id="finalScore"></span></p>
+            <button id="retryBtnSnake" style="display: none">Retry</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <button id="btn" class="magic">Press Me!</button>
-    <div id="boxes" class="boxes"></div>
+      <div class="fps-gameCanvas">
+        <canvas id="webgl-canvas"></canvas>
+      </div>
+      <!--Fps-->
+      <!-- <div class="fps-gameCanvas">
+        <canvas id="webgl-canvas" width="400" height="400"></canvas>
+      </div> -->
 
-    <footer style="background-color: #2e5077a4">this is the footer.</footer>
+      <!-- Your existing button -->
+      <div class="button-container">
+        <a href="./index.html" class="centered-button">Home</a>
+      </div>
+    </main>
+
     <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+    <footer style="background-color: #2e5077a4">this is the footer.</footer>
 
     <script src="Assets/JS/nav.js"></script>
     <script src="Assets/JS/snake.js"></script>
     <script src="Assets/JS/magicbox.js"></script>
+    <script type="module" src="Assets/GameAssets/js/main.js"></script>
+    <!-- <script type="module" src="Assets/GameAssets/js/test.js"></script> -->
   </body>
 </html>
