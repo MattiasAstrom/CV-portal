@@ -64,6 +64,43 @@ function setCanvasSize() {
   camera.updateProjectionMatrix();
 }
 
+// Function to create the box with text on it
+export function addTextBox() {
+  // Create the geometry for the box
+  const geometry = new THREE.BoxGeometry(2, 2, 2);
+  const material = new THREE.MeshBasicMaterial({
+    color: 0x00ff00,
+    wireframe: false,
+  });
+
+  const box = new THREE.Mesh(geometry, material);
+  box.position.set(0, 1, -5); // Position the box in the scene
+  box.name = "homeBox"; // Give the box a name for raycasting
+  scene.add(box);
+
+  // Create a text sprite for the label
+  const loader = new THREE.FontLoader();
+  loader.load(
+    "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",
+    (font) => {
+      const textGeometry = new THREE.TextGeometry("Go Home", {
+        font: font,
+        size: 0.5,
+        height: 0.1,
+      });
+
+      const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+      // Position the text on the box
+      textMesh.position.set(-0.75, 1, 1.1); // Adjust the position to the front of the box
+      box.add(textMesh);
+    }
+  );
+
+  return box; // Return the box so we can use it for raycasting
+}
+
 function addObjects() {
   // Add random spheres to the scene
   for (let i = 0; i < 50; i++) {

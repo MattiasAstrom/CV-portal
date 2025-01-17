@@ -179,6 +179,30 @@ header {
   display: none;
 }
 
+.threeD-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none; /* Remove underline */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  outline: none; /* Removes default outline */
+}
+
+/* Hover effect for the 3d button */
+.threeD-button:hover {
+  background-color: #45a049;
+}
+
+/* Focus effect (when clicked or focused) */
+.threeD-button:focus {
+  outline: 2px solid #2196f3; /* Add outline when focused */
+  outline-offset: 2px;
+}
+
 /* Styles for mobile screen sizes */
 @media (max-width: 600px) {
   /* Image container responsive */
@@ -556,14 +580,47 @@ nav button:hover {
   width: 40%;
 }
 
-.fps-game-container {
-  background-color: #333;
-  border: 24px solid white;
+/* Make the canvas container take the full screen */
+.fps-gameCanvas {
+  position: fixed; /* Fixed positioning to ensure it stays in place */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: #000; /* Optional: background color */
+  z-index: -1; /* Ensure canvas is behind other elements like buttons */
 }
 
+/* Make the canvas itself fill the container */
 #webgl-canvas {
-  background-color: #000;
-  border: 1px solid #fff;
   width: 100%;
-  height: 500px;
+  height: 100%;
+  display: block; /* Prevents extra space at the bottom */
+}
+
+/* Crosshair Styles */
+#crosshair {
+  position: absolute;
+  top: 50%; /* Center horizontally */
+  left: 50%; /* Center vertically */
+  width: 20px; /* Width of the horizontal line */
+  height: 2px; /* Height of the horizontal line */
+  background-color: #ff0000; /* Red color for the crosshair */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Center it exactly at the middle of the screen */
+  z-index: 10; /* Ensure it is on top of the canvas */
+}
+
+/* Vertical line for the crosshair */
+#crosshair::after {
+  content: "";
+  position: absolute;
+  top: -10px; /* Adjust this to extend the vertical line above the horizontal one */
+  left: 50%;
+  width: 2px; /* Width of the vertical line */
+  height: 20px; /* Height of the vertical line */
+  background-color: #ff0000; /* Red color for the crosshair */
+  transform: translateX(-50%);
 }
