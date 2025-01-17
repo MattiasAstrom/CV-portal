@@ -18,7 +18,6 @@ main {
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  outline: 4px solid yellow;
 }
 
 article {

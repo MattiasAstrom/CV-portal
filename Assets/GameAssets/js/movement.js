@@ -1,13 +1,15 @@
 import { moveForward, moveBackward, moveLeft, moveRight } from "./input.js";
 import { camera } from "./scene.js";
 import { THREE } from "./main.js";
+import { ground } from "./scene.js";
 
 let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
 let speed = 1; // Speed of movement
-let acceleration = 1; // Adjusted acceleration for smoother movement
-let maxSpeed = 20; // Max speed
+let acceleration = 0.05; // Adjusted acceleration for smoother movement
+let maxSpeed = 3; // Max speed
 let gravity = 0.1;
+
 export function updateMovement(clock) {
   const delta = clock.getDelta(); // Get the delta time (time elapsed between frames)
 
@@ -40,7 +42,15 @@ export function updateMovement(clock) {
   if (velocity.length() > maxSpeed) {
     velocity.setLength(maxSpeed);
   }
-  velocity.y -= gravity * delta;
+
+  if (camera.position.y > ground.position.y + 5) {
+    velocity.y -= gravity * delta; // Apply gravity
+  } else {
+    // Prevent falling through the ground
+    velocity.y = 0;
+    camera.position.y = ground.position.y + 5; // Correct camera height to ground level
+  }
+
   // Apply the velocity to the camera's position (move the camera)
   camera.position.add(velocity); // Apply velocity to camera position directly
   // Apply deceleration to the velocity (smooth stop)

@@ -4,6 +4,8 @@ import { camera } from "./scene.js";
 export let mouseX = 0,
   mouseY = 0;
 export let isPointerLocked = false;
+let sensitivity = 0.02; // Mouse sensitivity, this value can be adjusted
+
 export function setupPointerLock() {
   const canvas = document.getElementById("webgl-canvas");
 
@@ -33,8 +35,6 @@ export function onClick() {
     canvas.requestPointerLock();
   }
 }
-
-let sensitivity = 0.002; // Mouse sensitivity, this value can be adjusted
 
 export function onMouseMove(event) {
   if (isPointerLocked) {

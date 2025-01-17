@@ -1,6 +1,6 @@
 import { THREE } from "./main.js";
 // Global variablesobjloadtextureloader
-export let scene, camera, renderer;
+export let scene, camera, renderer, ground;
 
 export function initScene() {
   // Scene setup
@@ -45,6 +45,9 @@ export function initScene() {
 
   // Setup lighting
   addLighting();
+
+  // Setup Ground
+  addGround();
 
   // Resize event listener
   window.addEventListener("resize", onWindowResize, false);
@@ -96,26 +99,68 @@ function addObjects() {
   }
 }
 
-// function addGround() {
-//   const texture = new THREE.TextureLoader().load("assets/gras364.jpg");
+function addGround() {
+  // Load the different textures
+  const albedoTexture = new THREE.TextureLoader().load(
+    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Albedo.png"
+  );
+  const normalTexture = new THREE.TextureLoader().load(
+    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Normal.png"
+  );
+  const metallicTexture = new THREE.TextureLoader().load(
+    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Metallic.png"
+  );
+  const heightTexture = new THREE.TextureLoader().load(
+    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Height.png"
+  );
+  const aoTexture = new THREE.TextureLoader().load(
+    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Occlusion.png"
+  );
 
-//   // Set the texture to repeat along both axes
-//   texture.wrapS = THREE.RepeatWrapping; // Repeat texture horizontally (x-axis)
-//   texture.wrapT = THREE.RepeatWrapping; // Repeat texture vertically (y-axis)
+  // Optionally, you can adjust the wrapping for the textures
+  albedoTexture.wrapS = THREE.RepeatWrapping;
+  albedoTexture.wrapT = THREE.RepeatWrapping;
+  normalTexture.wrapS = THREE.RepeatWrapping;
+  normalTexture.wrapT = THREE.RepeatWrapping;
+  metallicTexture.wrapS = THREE.RepeatWrapping;
+  metallicTexture.wrapT = THREE.RepeatWrapping;
+  heightTexture.wrapS = THREE.RepeatWrapping;
+  heightTexture.wrapT = THREE.RepeatWrapping;
+  aoTexture.wrapS = THREE.RepeatWrapping;
+  aoTexture.wrapT = THREE.RepeatWrapping;
 
-//   // Scale down the texture by 90% and tile it
-//   texture.repeat.set(100, 100); // This will repeat the texture 10 times on each axis
+  // Set texture repeats to control the scaling of textures
+  let xRep = 100;
+  let yRep = 100;
+  albedoTexture.repeat.set(xRep, yRep);
+  normalTexture.repeat.set(xRep, yRep);
+  metallicTexture.repeat.set(xRep, yRep);
+  heightTexture.repeat.set(xRep, yRep);
+  aoTexture.repeat.set(xRep, yRep);
 
-//   // If you want to scale the texture down by 90% (i.e., making each tile 10% of its original size),
-//   // you can adjust the repeat set like this:
-//   texture.repeat.set(100, 100); // Each tile will cover a much smaller area
+  // Create the material using MeshStandardMaterial
+  const groundMaterial = new THREE.MeshStandardMaterial({
+    map: albedoTexture, // Albedo (Base Color)
+    normalMap: normalTexture, // Normal Map
+    metalnessMap: metallicTexture, // Metallic Map
+    roughnessMap: aoTexture, // Ambient Occlusion as Roughness map (you can adjust this as needed)
+    displacementMap: heightTexture, // Height Map (displacement)
+    displacementScale: 0.1, // Scale of the displacement (adjust as needed)
+    side: THREE.DoubleSide, // Make sure both sides of the plane are rendered
+  });
 
-//   const geometry = new THREE.PlaneGeometry(500, 500);
-//   const material = new THREE.MeshLambertMaterial({ map: texture });
-//   const ground = new THREE.Mesh(geometry, material);
-//   ground.rotation.x = -Math.PI / 2;
-//   scene.add(ground);
-// }
+  // Create the geometry for the ground (plane)
+  const geometry = new THREE.PlaneGeometry(500, 500);
+
+  // Create the mesh with the geometry and the complex material
+  ground = new THREE.Mesh(geometry, groundMaterial);
+
+  // Rotate the ground to be flat
+  ground.rotation.x = -Math.PI / 2;
+
+  // Add the ground to the scene
+  scene.add(ground);
+}
 
 function addLighting() {
   // Directional Light (main sunlight)
@@ -148,7 +193,7 @@ function addSkybox() {
 
   // Load the equirectangular panoramic image
   const spaceTexture = loader.load(
-    "./Assets/GameAssets/imgs/skybox/blue_nebulae_1.png"
+    "./Assets/GameAssets/imgs/skybox/clay4_edge.bmp"
   );
 
   // Create a large sphere for the skybox
