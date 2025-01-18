@@ -99,15 +99,27 @@ export function checkRaycast() {
   // Perform the raycast and check for intersections
   const intersects = raycaster.intersectObjects(scene.children);
 
-  for (let i = 0; i < intersects.length; i++) {
-    console.log(intersects[0].object);
-  }
-
   // If the ray hits an object, update the rayLine to reflect the intersection
   if (intersects.length > 0) {
     const hitObject = intersects[0].object;
-    if (hitObject.name === "homeBox") {
-      window.location.href = "./index.html"; // Redirect to Home page if hit
+    switch (hitObject.name) {
+      case "Home":
+        window.location.href = "./index.html"; // Redirect to home
+        break;
+      case "About":
+        window.location.href = "./about.html"; // Redirect to about
+        break;
+      case "Projects":
+        window.location.href = "./projects.html"; // Redirect to projects
+        break;
+      case "CV":
+        window.location.href = "./cv.html"; // Redirect to CV
+        break;
+      case "Contact":
+        window.location.href = "./contact.html"; // Redirect to contact
+        break;
+      default:
+        break;
     }
 
     // Get the distance to the intersection point

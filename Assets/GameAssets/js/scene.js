@@ -2,10 +2,16 @@ import { THREE } from "./main.js";
 // Global variablesobjloadtextureloader
 export let scene, camera, renderer, ground;
 
+let height = 0;
 export function initScene() {
   // Scene setup
   scene = new THREE.Scene();
-
+  {
+    const color = 0xffffff; // white
+    const near = 50;
+    const far = 1000;
+    scene.fog = new THREE.Fog(color, near, far);
+  }
   camera = new THREE.PerspectiveCamera(
     70,
     window.innerWidth / window.innerHeight,
@@ -34,7 +40,7 @@ export function initScene() {
   scene.add(directionalLight);
 
   // Ambient Light
-  const ambientLight = new THREE.AmbientLight(0x404040, 1); // Soft light
+  const ambientLight = new THREE.AmbientLight(0x404040, 0.5); // Soft light
   scene.add(ambientLight);
 
   // Add objects to the scene
@@ -48,6 +54,17 @@ export function initScene() {
 
   // Setup Ground
   addGround();
+
+  //add text objects
+  const textMaterial = new THREE.MeshBasicMaterial({ color: 0xd5cc0d });
+  textMaterial.alphaHash = true;
+  textMaterial.colorWhite = true;
+  textMaterial.opacity = 0.5;
+  createText("Home", "Home", 2, 1, 4, textMaterial);
+  createText("About", "About", 2, 1, 8, textMaterial);
+  createText("Projects", "Projects", 2, 1, 12, textMaterial);
+  createText("CV", "CV", 2, 1, 16, textMaterial);
+  createText("Contact", "Contact", 2, 1, 20, textMaterial);
 
   // Resize event listener
   window.addEventListener("resize", onWindowResize, false);
@@ -93,12 +110,54 @@ export function addTextBox() {
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
       // Position the text on the box
-      textMesh.position.set(-0.75, 1, 1.1); // Adjust the position to the front of the box
+      textMesh.position.set(0, 0.1, 0); // Adjust the position to the front of the box
       box.add(textMesh);
     }
   );
 
   return box; // Return the box so we can use it for raycasting
+}
+
+function createText(tag, text, size, depth, hover, materials, mirror = false) {
+  const loader = new THREE.FontLoader();
+  loader.load(
+    "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",
+    (font) => {
+      const textGeo = new THREE.TextGeometry(text, {
+        font: font,
+        size: size,
+        height: depth,
+        curveSegments: 12,
+        bevelThickness: 0.1,
+        bevelSize: 0.1,
+        bevelEnabled: true,
+      });
+
+      textGeo.computeBoundingBox();
+      const centerOffset =
+        -0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
+
+      const textMesh1 = new THREE.Mesh(textGeo, materials);
+      textMesh1.position.x = 25;
+      textMesh1.position.y = hover;
+      textMesh1.position.z = -25;
+      textMesh1.rotation.x = 0;
+      textMesh1.rotation.y = Math.PI * 2;
+      textMesh1.name = tag;
+      scene.add(textMesh1); // Directly add to scene, or group it if necessary
+
+      if (mirror) {
+        const textMesh2 = new THREE.Mesh(textGeo, materials);
+        textMesh2.position.x = centerOffset;
+        textMesh2.position.y = -hover;
+        textMesh2.position.z = depth;
+        textMesh2.rotation.x = Math.PI;
+        textMesh2.rotation.y = Math.PI * 2;
+        textMesh2.name = tag;
+        scene.add(textMesh2); // Add mirrored text to scene
+      }
+    }
+  );
 }
 
 function addObjects() {
@@ -132,26 +191,31 @@ function addObjects() {
       Math.random() * 10 + 2,
       Math.random() * 1000 - 500
     );
+
     scene.add(cube);
   }
 }
 
 function addGround() {
   // Load the different textures
+  // Define the texture number as a variable
+  const textureNumber = 9;
+  //9
+  // Construct the file path dynamically using the texture number
   const albedoTexture = new THREE.TextureLoader().load(
-    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Albedo.png"
+    `./Assets/GameAssets/imgs/Textures/Ground/Ground_${textureNumber}_Albedo.png`
   );
   const normalTexture = new THREE.TextureLoader().load(
-    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Normal.png"
+    `./Assets/GameAssets/imgs/Textures/Ground/Ground_${textureNumber}_Normal.png`
   );
   const metallicTexture = new THREE.TextureLoader().load(
-    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Metallic.png"
+    `./Assets/GameAssets/imgs/Textures/Ground/Ground_${textureNumber}_Metallic.png`
   );
   const heightTexture = new THREE.TextureLoader().load(
-    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Height.png"
+    `./Assets/GameAssets/imgs/Textures/Ground/Ground_${textureNumber}_Height.png`
   );
   const aoTexture = new THREE.TextureLoader().load(
-    "./Assets/GameAssets/imgs/Textures/ground/Ground_1_Occlusion.png"
+    `./Assets/GameAssets/imgs/Textures/Ground/Ground_${textureNumber}_Occlusion.png`
   );
 
   // Optionally, you can adjust the wrapping for the textures
@@ -197,16 +261,18 @@ function addGround() {
 
   // Add the ground to the scene
   scene.add(ground);
+
+  geometry.dispose();
+  groundMaterial.dispose();
 }
 
 function addLighting() {
   // Directional Light (main sunlight)
-  const light = new THREE.DirectionalLight(0xffffff, 1);
+  const light = new THREE.DirectionalLight(0xffffff, 0.1);
   light.position.set(5, 5, 5).normalize();
   scene.add(light);
-
   // Ambient Light (to ensure some minimal lighting)
-  const ambientLight = new THREE.AmbientLight(0x404040, 1); // Ambient light with a bit of light everywhere
+  const ambientLight = new THREE.AmbientLight(0x404040, 0.1); // Ambient light with a bit of light everywhere
   scene.add(ambientLight);
 }
 
@@ -230,7 +296,7 @@ function addSkybox() {
 
   // Load the equirectangular panoramic image
   const spaceTexture = loader.load(
-    "./Assets/GameAssets/imgs/skybox/clay4_edge.bmp"
+    "./Assets/GameAssets/imgs/Skybox/blue_nebulae_1.png"
   );
 
   // Create a large sphere for the skybox

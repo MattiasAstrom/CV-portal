@@ -1,18 +1,22 @@
 import { clock } from "./main.js"; // Import clock from main.js
 import { camera } from "./scene.js";
 
+export let shoot;
 export let mouseX = 0,
   mouseY = 0;
 export let isPointerLocked = false;
 let sensitivity = 0.02; // Mouse sensitivity, this value can be adjusted
-
 export function setupPointerLock() {
   const canvas = document.getElementById("webgl-canvas");
 
   // Ensure that mouse events are added when pointer lock is active
   if (canvas) {
     canvas.addEventListener("click", () => {
-      canvas.requestPointerLock();
+      if (document.pointerLockElement === canvas) {
+        shoot = true;
+      } else {
+        canvas.requestPointerLock();
+      }
     });
   }
 
