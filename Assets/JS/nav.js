@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <nav class="nav">
       <ol>
         <li>
-          <a href="./3dgame.html" class="3d-button">3D</a>
+          <a href="./3dgame.html" class="threed-button">3D</a>
         </li>
         <li>
           <a href="./index.html">Home</a>

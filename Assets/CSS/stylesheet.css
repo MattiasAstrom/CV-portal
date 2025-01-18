@@ -179,22 +179,52 @@ header {
   display: none;
 }
 
-.threeD-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4caf50;
+/* Set up a 3D container perspective */
+.threed-button {
+  background-color: #ff000000;
+  text-align: center;
   color: white;
-  text-decoration: none; /* Remove underline */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block;
-  outline: none; /* Removes default outline */
+  font-weight: bold;
+  text-decoration: none;
+
+  /* Add perspective to the container */
+  transform-style: preserve-3d; /* Maintain 3D transformations */
+  animation: rotateX 4s infinite linear; /* Rotate around X-axis */
+
+  position: absolute;
+  left: 1%;
+  /* Add perspective to the container */
+
+  /* Transition effects for the text */
+  transition: color 0.3s ease, font-size 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hover effect for the 3d button */
-.threeD-button:hover {
-  background-color: #45a049;
+/* Keyframes to rotate the element on the X-axis */
+/* Keyframes to rotate the element on the X-axis */
+@keyframes rotateX {
+  0% {
+    transform: rotateY(0deg); /* Start from 0 degrees */
+    color: white; /* Starting text color */
+    font-size: 20px; /* Initial font size */
+  }
+  25% {
+    color: #dddcd6; /* Change color to yellow */
+    font-size: 16px; /* Shrink font size */
+  }
+  50% {
+    transform: rotateY(180deg); /* Halfway through the rotation */
+    color: #c1ebc1; /* Change color to green */
+    font-size: 20px; /* Normal font size */
+  }
+  75% {
+    color: #d3c9f5; /* Change color back to yellow */
+    font-size: 22px; /* Expand font size */
+  }
+  100% {
+    transform: rotateY(360deg); /* Full rotation */
+    color: white; /* Change back to white */
+    font-size: 20px; /* Normal font size */
+  }
 }
 
 /* Focus effect (when clicked or focused) */
@@ -204,7 +234,10 @@ header {
 }
 
 /* Styles for mobile screen sizes */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .threed-button {
+    display: none;
+  }
   /* Image container responsive */
   .image-container img {
     width: calc(50% - 10px);
