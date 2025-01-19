@@ -192,6 +192,7 @@ function addObjects() {
       Math.random() * 1000 - 500
     );
 
+    cube.castShadow = true;
     scene.add(cube);
   }
 }
@@ -272,8 +273,8 @@ function addLighting() {
   light.position.set(5, 5, 5).normalize();
   scene.add(light);
   // Ambient Light (to ensure some minimal lighting)
-  const ambientLight = new THREE.AmbientLight(0x404040, 0.1); // Ambient light with a bit of light everywhere
-  scene.add(ambientLight);
+  // const ambientLight = new THREE.AmbientLight(0x404040, 0.1); // Ambient light with a bit of light everywhere
+  // scene.add(ambientLight);
 }
 
 //6images skybox

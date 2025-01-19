@@ -143,29 +143,27 @@ header {
   transform: scale(1.05);
 }
 .panda-container {
-  width: 50%;
-  border: 2px solid blue;
-  padding: 5%;
-  position: relative;
+  display: flex;
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Space between items */
+  padding: 1em;
 }
 
-.PandaPicture {
-  border: 2px solid red;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.panda-container img {
+  width: 50%; /* Image takes up 50% of the container */
+  object-fit: cover; /* Ensure the image maintains aspect ratio */
+}
+
+.panda-container p {
+  width: 50%; /* Text takes up 50% of the container */
+  padding: 0 10px; /* Optional padding for spacing */
+  text-align: justify; /* Optional, to align the text nicely */
 }
 
 .box-container {
   background-color: black;
   height: 150px;
   width: 150px;
-  border: 1px solid blue;
   background-image: url(../images/Panda.jpg);
   background-position: center;
   background-repeat: none;
@@ -512,23 +510,28 @@ nav button:hover {
 .projects-container {
   position: relative;
   width: 100%;
+  height: 90%;
   overflow: hidden; /* Hides the overflow so only one project card is visible */
+  background-color: rgb(53, 42, 42);
 }
 
 /* Wrapper for all the project cards */
 .projects-wrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+  padding: 0.5%;
 }
 
 /* Project card styling */
 .project-card {
   display: flex;
-  background-color: white;
-  border-radius: 8px;
+  background-color: rgb(233, 123, 123);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  outline: 1px solid blue;
   padding: 20px;
-  width: 100%;
+  width: 50%;
   flex-shrink: 0; /* Ensures that cards don't shrink */
 }
 
@@ -565,41 +568,11 @@ nav button:hover {
   object-fit: contain;
 }
 
-/* Left and Right arrows */
-.arrow-left,
-.arrow-right {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 24px;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-.arrow-left {
-  left: 10px;
-}
-
-.arrow-right {
-  right: 10px;
-}
-
-/* Disable arrows when at start or end */
-.arrow-left.disabled,
-.arrow-right.disabled {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.card-container {
+/* .card-container {
   width: 90%;
-  height: 5rem;
+  height: 90%;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   background-color: #3b3434;
@@ -609,9 +582,9 @@ nav button:hover {
 .card {
   background-color: black;
   border: 2px solid red;
-  height: 1rem;
-  width: 40%;
-}
+  height: 2rem;
+  width: 2rem;
+} */
 
 /* Make the canvas container take the full screen */
 .fps-gameCanvas {

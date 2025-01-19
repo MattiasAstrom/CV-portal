@@ -12,6 +12,10 @@ let acceleration = 0.05; // Adjusted acceleration for smoother movement
 let maxSpeed = 3; // Max speed
 let gravity = 0.1;
 
+let headbobAmplitude = 0.1; // Amplitude of the headbob (how far up/down)
+let headbobFrequency = 10; // Frequency of the headbob (how fast it oscillates)
+let headbobTime = 0; // Track the elapsed time for headbob oscillation
+
 export function updateMovement(clock) {
   const delta = clock.getDelta(); // Get the delta time (time elapsed between frames)
 
@@ -55,6 +59,17 @@ export function updateMovement(clock) {
 
   // Apply the velocity to the camera's position (move the camera)
   camera.position.add(velocity); // Apply velocity to camera position directly
+
+  // Headbob Effect: Adjust camera's y position based on the movement direction and velocity
+  if (velocity.length() > 0.1) {
+    // Calculate headbob time based on velocity (only when moving)
+    headbobTime += delta * headbobFrequency;
+
+    // Apply a sine wave to the y position of the camera for the headbob effect
+    const headbobOffset = Math.sin(headbobTime) * headbobAmplitude;
+    camera.position.y += headbobOffset;
+  }
+
   // Apply deceleration to the velocity (smooth stop)
   velocity.multiplyScalar(0.9); // Gradual slowdown for smooth deceleration
 }
