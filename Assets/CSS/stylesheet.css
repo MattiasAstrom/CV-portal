@@ -1,23 +1,19 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body,
 html {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  display: block;
 }
 
 main {
   background-color: aquamarine;
-  height: 90vh;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
+  padding: 20px;
+  height: auto;
 }
 
 article {
@@ -32,8 +28,7 @@ footer {
   color: white;
   text-align: center;
   padding: 10px;
-  margin: 0;
-  height: 5vh;
+  height: 5vh; /* Footer height */
 }
 
 header {
@@ -47,11 +42,6 @@ header {
   left: 0;
   right: 0;
   margin: 0;
-}
-
-.container {
-  max-width: 100%;
-  margin: 0 auto;
 }
 
 .nav {
@@ -120,56 +110,6 @@ header {
   background-color: #575757;
 }
 
-.image-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 10px;
-}
-
-.image-container img {
-  width: 100%;
-  max-width: 350px;
-  object-fit: cover;
-  border: 1px solid blue;
-}
-
-.image-container img:hover {
-  transform: scale(1.05);
-}
-.panda-container {
-  display: flex;
-  align-items: center; /* Vertically align items */
-  justify-content: space-between; /* Space between items */
-  padding: 1em;
-}
-
-.panda-container img {
-  width: 50%; /* Image takes up 50% of the container */
-  object-fit: cover; /* Ensure the image maintains aspect ratio */
-}
-
-.panda-container p {
-  width: 50%; /* Text takes up 50% of the container */
-  padding: 0 10px; /* Optional padding for spacing */
-  text-align: justify; /* Optional, to align the text nicely */
-}
-
-.box-container {
-  background-color: black;
-  height: 150px;
-  width: 150px;
-  background-image: url(../images/Panda.jpg);
-  background-position: center;
-  background-repeat: none;
-  background-size: cover;
-}
-
 /* Default styles for mobile nav - Hidden by default */
 #navbar-links,
 .mobile-nav,
@@ -231,23 +171,18 @@ header {
   outline-offset: 2px;
 }
 
+@media (max-width: 1100px) {
+  .flex-container-item {
+    flex-direction: column;
+    width: 100%;
+    width: 100%; /* Adjust width on smaller screens */
+    padding: 15px; /* Increase padding for better spacing in column layout */
+  }
+}
 /* Styles for mobile screen sizes */
 @media (max-width: 700px) {
   .threed-button {
     display: none;
-  }
-  /* Image container responsive */
-  .image-container img {
-    width: calc(50% - 10px);
-    .nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #333;
-      position: absolute;
-      top: 60px; /* To avoid overlap with the header */
-      width: 100%;
-    }
   }
 
   /* Navbar styling for mobile */
@@ -507,54 +442,58 @@ nav button:hover {
 }
 
 /* Container for the projects */
-.projects-container {
-  position: relative;
-  width: 100%;
-  height: 90%;
-  overflow: hidden; /* Hides the overflow so only one project card is visible */
-  background-color: rgb(53, 42, 42);
-}
-
-/* Wrapper for all the project cards */
-.projects-wrapper {
+.flex-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
-  padding: 0.5%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* Project card styling */
-.project-card {
+.flex-container-item {
   display: flex;
+  align-items: center;
   background-color: rgb(233, 123, 123);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  outline: 1px solid blue;
-  padding: 20px;
+  padding: 10px;
+  margin: 10px;
   width: 50%;
-  flex-shrink: 0; /* Ensures that cards don't shrink */
+  outline: 1px solid blue;
+
+  transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+/* Image section of the card */
+.flex-container-image {
+  min-width: 50%;
+  max-width: 25%;
+  height: 100%;
+  border-radius: 8px;
+  outline: 1px solid rgb(255, 0, 0);
 }
 
-/* Image section of the card */
-.project-image img {
+.flex-container-item img {
   width: 200px;
-  height: 200px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: fill;
   border-radius: 8px;
+  outline: 1px solid black;
 }
 
 /* Project details section */
-.project-details {
+.flex-container-details {
   flex: 1;
   padding-left: 20px;
+  outline: 1px solid black;
 }
 
 /* Title and description */
-.project-details h3 {
+.flex-container-details h3 {
   margin-top: 0;
 }
 
-.project-details p {
+.flex-container-details p {
   color: #555;
   line-height: 1.6;
   margin-bottom: 20px;
