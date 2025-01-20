@@ -9,8 +9,9 @@
   <body>
     <header>
       <div id="navbar-container"></div>
-      <div class="hamburger-menu" onclick="toggleMenu()">☰</div>
-      <nav class="nav">
+      <!-- <div class="hamburger-menu" onclick="toggleMenu()">☰</div> -->
+      <span class="openbtn" onclick="openNav()">☰</span>
+      <!-- <nav class="nav">
         <ol id="navbar-links">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
@@ -18,9 +19,23 @@
           <li><a href="./cv.html">CV</a></li>
           <li><a href="./contact.html">Contact</a></li>
         </ol>
-      </nav>
-    </header>
+      </nav> -->
 
+      <div id="myNav" class="overlay">
+        <a class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <ol id="navbar-links"></ol>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./cv.html">CV</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Use any element to open/show the overlay navigation menu -->
+    </header>
     <main>
       <div class="flex-container">
         <!-- Project 1 -->
