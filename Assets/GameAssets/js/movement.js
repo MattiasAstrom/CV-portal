@@ -67,39 +67,75 @@ export function updateMovement(clock) {
   velocity.multiplyScalar(0.9);
 }
 
-// Collision detection function using Raycaster
 function checkCollisions() {
   const origin = camera.position.clone();
 
   // Get the camera's velocity as the movement direction
-  const movementDirection = velocity.clone().normalize(); // Use the velocity to calculate direction
-  const maxRayDistance = 0.7; // Max distance to check, extended for safety
+  const movementDirection = velocity.clone().normalize();
 
-  // Perform the raycast in the direction of movement
+  // Use a shorter ray distance for better collision detection, depending on speed
+  const maxRayDistance = Math.min(velocity.length() * 2, 20); // Max distance to check
+
+  // Perform the raycast in the direction of movement (forward)
   raycaster.ray.origin.copy(origin);
   raycaster.ray.direction.copy(movementDirection);
 
   // Perform the intersection test against all objects in the scene
   const intersects = raycaster.intersectObjects(scene.children, true);
 
-  // Debugging the intersection results
-  console.log(intersects);
-
   // If the ray intersects with an object, handle the collision
   if (intersects.length > 0) {
     const hit = intersects[0]; // The first object hit
     const hitDistance = hit.distance;
 
-    // If the collision is very close (within the distance of the current movement speed), prevent camera movement
-    if (hitDistance < maxRayDistance) {
-      const blockDistance = Math.max(hitDistance - 0.1, 0); // Prevent the camera from passing through by adjusting the distance
-      // camera.position.addScaledVector(movementDirection, -blockDistance); // Adjust the camera based on velocity and direction
+    console.log(`Collision detected at distance: ${hitDistance}`);
 
-      // **Stop the movement in the direction of the collision**
-      velocity.set(0, 0, 0); // Set the velocity to zero along the X and Z axes to prevent "gliding"
+    // Handle collisions with the walls or enemies
+    if (hitDistance < maxRayDistance) {
+      // Stop movement on X and Z axes if collision is detected
+      velocity.set(0, velocity.y, 0); // Preserve Y velocity (gravity, falling, etc.)
+
+      // Optionally, adjust the camera position to avoid clipping into the object
+      camera.position.addScaledVector(movementDirection, -0.1);
 
       console.log("Camera blocked from passing through object");
       return true; // Collision detected, block movement
+    }
+  }
+
+  // Check for ground to avoid floating (raycast downward)
+  const groundRay = new THREE.Raycaster(
+    camera.position.clone(),
+    new THREE.Vector3(0, -1, 0)
+  );
+  const groundIntersects = groundRay.intersectObjects(scene.children, true);
+
+  // Handle ground detection (prevents floating)
+  if (groundIntersects.length > 0) {
+    const groundHit = groundIntersects[0];
+    const groundY = groundHit.point.y;
+
+    // Adjust the Y position to be on the ground
+    if (camera.position.y > groundY + 0.1) {
+      camera.position.y = groundY + 0.1; // Prevent camera from floating above ground
+    }
+
+    // Stop downward velocity if near ground
+    if (velocity.y < 0) {
+      velocity.y = 0;
+    }
+  }
+
+  // Handle ramps: Calculate if the surface is sloped and adjust Y based on surface normal
+  if (intersects.length > 0) {
+    const surfaceNormal = intersects[0].face.normal; // Normal of the intersected surface
+
+    // If the surface is sloped (not flat), adjust Y position based on the normal
+    if (Math.abs(surfaceNormal.y) < 0.9) {
+      // Adjust slope threshold as needed
+      const rampAngleAdjustment = (1 - Math.abs(surfaceNormal.y)) * 0.2; // Fine-tune the adjustment factor
+      camera.position.y -= rampAngleAdjustment; // Adjust camera Y to follow the ramp
+      velocity.y = 0; // Prevent falling off the ramp
     }
   }
 

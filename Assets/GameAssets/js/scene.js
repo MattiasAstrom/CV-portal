@@ -197,34 +197,31 @@ function addObjects() {
       color: Math.random() * 0xffffff,
     });
     const sphere = new THREE.Mesh(geometry, material);
-    sphere.position.set(0, 4, -5);
-    // sphere.position.set(
-    //   Math.random() * 1000 - 500,
-    //   Math.random() * 10 + 2,
-    //   Math.random() * 1000 - 500
-    // );
+    sphere.position.set(0, 4, -5); // Position in front of the camera
     scene.add(sphere);
   }
-  // Add random cubes to the scene
-  // for (let i = 0; i < 50; i++) {
-  //   const geometry = new THREE.BoxGeometry(
-  //     Math.random() * 2 + 1,
-  //     Math.random() * 2 + 1,
-  //     Math.random() * 2 + 1
-  //   );
-  //   const material = new THREE.MeshLambertMaterial({
-  //     color: Math.random() * 0xffffff,
-  //   });
-  //   const cube = new THREE.Mesh(geometry, material);
-  //   cube.position.set(
-  //     Math.random() * 1000 - 500,
-  //     Math.random() * 10 + 2,
-  //     Math.random() * 1000 - 500
-  //   );
 
-  //   cube.castShadow = true;
-  //   scene.add(cube);
-  // }
+  // Add a floor
+  const floorGeometry = new THREE.PlaneGeometry(1000, 1000); // Large plane
+  const floorMaterial = new THREE.MeshLambertMaterial({
+    color: 0x888888,
+    side: THREE.DoubleSide,
+  });
+  const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+  floor.rotation.x = -Math.PI / 2; // Rotate the floor to be horizontal
+  floor.position.set(0, 0, 0); // Position the floor at y = 0 (ground level)
+  scene.add(floor);
+
+  // Add a ramp
+  const rampGeometry = new THREE.BoxGeometry(10, 1, 20); // A wide and shallow ramp
+  const rampMaterial = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+  const ramp = new THREE.Mesh(rampGeometry, rampMaterial);
+
+  // Rotate the ramp to give it a slope
+  ramp.rotation.x = Math.PI / 6; // Adjust the angle of the ramp (slope)
+  ramp.position.set(0, 1, -15); // Position the ramp to be in front of the camera
+
+  scene.add(ramp);
 }
 
 function addGround() {
