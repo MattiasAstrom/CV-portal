@@ -1,4 +1,5 @@
 import { THREE } from "./main.js";
+import { GLTFLoader } from "./main.js";
 // Global variablesobjloadtextureloader
 export let scene, camera, renderer, ground;
 
@@ -69,6 +70,34 @@ export function initScene() {
   // Resize event listener
   window.addEventListener("resize", onWindowResize, false);
 }
+
+let objToRender = "eye";
+const loader = new GLTFLoader();
+
+//Load the file
+//src="Assets/GameAssets/js/main.js"
+loader.load(
+  `./Assets/GameAssets/${objToRender}/scene.gltf`,
+  function (gltf) {
+    //If the file is loaded, add it to the scene
+    let object = gltf.scene;
+    // Set the position to (0, 1, -5)
+    object.position.set(0, 1, -5);
+
+    // Reduce the size by 90% (scale to 10% of original size)
+    object.scale.set(0.1, 0.1, 0.1);
+    scene.add(object);
+  },
+  function (xhr) {
+    //While it is loading, log the progress
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  function (error) {
+    //If there is an error, log it
+    console.error(error);
+  }
+);
+
 function setCanvasSize() {
   const container = document.getElementById("webgl-canvas");
 

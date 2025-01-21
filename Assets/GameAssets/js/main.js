@@ -1,4 +1,7 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
+export { THREE };
+export { GLTFLoader };
 
 import { initScene, scene, camera, renderer } from "./scene.js";
 import { updateMovement } from "./movement.js";
@@ -9,7 +12,6 @@ import { addTextBox } from "./scene.js"; // Import the function to create the bo
 import { checkRaycast, initRayVisualizer } from "./movement.js"; // Correct import of initRayVisualizer
 
 export const clock = new THREE.Clock();
-export { THREE };
 
 initScene(); // Initializes the scene, camera, and renderer
 
