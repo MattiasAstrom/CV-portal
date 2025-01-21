@@ -363,7 +363,7 @@ img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: -1;
-  backdrop-filter: blur(1px);
+  /* backdrop-filter: blur(10px); */
 }
 
 .background-homepage .container {
@@ -377,6 +377,8 @@ img {
 .background-homepage p {
   margin: 0;
   padding: 0;
+  /* transform: skewX(0deg);
+  transform: skewY(-7deg); */
 }
 
 .background-homepage h5 {
@@ -521,8 +523,10 @@ nav button:hover {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  max-width: 600px;
+  max-width: 50%;
   width: 80%;
+  display: grid;
+  justify-items: center;
 }
 
 .modal-close {
@@ -566,6 +570,7 @@ nav button:hover {
   transform: scale(0);
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  text-align: center;
 }
 
 /* Make the canvas container take the full screen */
@@ -729,4 +734,22 @@ nav button:hover {
     top: 15px;
     right: 35px;
   }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  max-width: 50%; /* Maximum width */
+  min-width: 50%;
+  margin: 0 auto; /* Center it */
+  text-align: center;
+}
+
+.container .content {
+  position: absolute; /* Position the background text */
+  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  width: 100%;
 }

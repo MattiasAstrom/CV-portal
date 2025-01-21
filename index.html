@@ -10,23 +10,28 @@
   <body>
     <header>
       <div id="navbar-container"></div>
-      <div class="hamburger-menu" onclick="toggleMenu()">☰</div>
-      <nav class="nav">
-        <ol id="navbar-links">
+      <span class="openbtn" onclick="openNav()">☰</span>
+
+      <div id="myNav" class="overlay">
+        <a class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <ol id="navbar-links"></ol>
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./projects.html">Projects</a></li>
           <li><a href="./cv.html">CV</a></li>
           <li><a href="./contact.html">Contact</a></li>
-        </ol>
-      </nav>
+          </ol>
+        </div>
+      </div>
+    </header>
     <div class="background-homepage">
       <div class="container">
         <h5 class="blue-out">Hello, my name is</h5>
-        <h1>Mattias Åström</h1>
-        <h1 class="gray-out">writer of half-decent code</h1>
+        <h1>Mattias Åström,</h1>
+        <h1 class="gray-out">I am a fullstack developer.</h1>
         <p class="gray-out">
-          I am a fullstack developer, creator of acceptable code.
+          author of half-decent code, and a completer of tasks.
         </p>
       </div>
     </div>

@@ -9,16 +9,20 @@
   <body>
     <header>
       <div id="navbar-container"></div>
-      <div class="hamburger-menu" onclick="toggleMenu()">☰</div>
-      <nav class="nav">
-        <ol id="navbar-links">
+      <span class="openbtn" onclick="openNav()">☰</span>
+
+      <div id="myNav" class="overlay">
+        <a class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <ol id="navbar-links"></ol>
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./projects.html">Projects</a></li>
           <li><a href="./cv.html">CV</a></li>
           <li><a href="./contact.html">Contact</a></li>
-        </ol>
-      </nav>
+          </ol>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -29,14 +33,14 @@
         <div class="flex-container-details">
           <p>
             <span class="first-word">Panda</span>, amidst the bamboo forests,
-            where the leaves rustle and the worldis full of naps, there exists a
-            panda unlike any other. Known asthe Glorious Coder, this panda
-            effortlessly slays bugs whilesipping on coffee like it’s his nectar.
-            A true master of thekeyboard, he types faster than you can say
-            "bamboo." When he's notfixing code, he's munching on bamboo like
-            it's his job — andhonestly, it probably should be. With one paw on
-            the keyboard andthe other holding a coffee cup, this panda is living
-            his bestlife, one line of code (and bamboo stalk) at a time. 🐼☕💻
+            where the leaves rustle and the world is full of naps, there exists a
+            panda unlike any other. Known as the Glorious Coder, this panda
+            effortlessly slays bugs while sipping on coffee like it’s his nectar.
+            A true master of the keyboard, he types faster than you can say
+            "bamboo." When he's not fixing code, he's munching on bamboo like
+            it's his job — and honestly, it probably should be. With one paw on
+            the keyboard and the other holding a coffee cup, this panda is living
+            his best life, one line of code (and bamboo stalk) at a time. 🐼☕💻
           </p>
         </div>
       </div>
@@ -46,6 +50,5 @@
     <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
 
     <script src="Assets/JS/nav.js"></script>
-    <script src="Assets/JS/projects-slider.js"></script>
   </body>
 </html>
