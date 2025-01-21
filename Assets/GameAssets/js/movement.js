@@ -17,7 +17,7 @@ let headbobFrequency = 10; // Frequency of the headbob (how fast it oscillates)
 let headbobTime = 0; // Track the elapsed time for headbob oscillation
 
 export function updateMovement(clock) {
-  const delta = clock.getDelta(); // Get the delta time (time elapsed between frames)
+  const delta = clock.getDelta();
 
   // Create a quaternion from the camera's Euler rotation
   const cameraQuaternion = new THREE.Quaternion().setFromEuler(camera.rotation);
@@ -26,7 +26,7 @@ export function updateMovement(clock) {
   const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(cameraQuaternion);
   const right = new THREE.Vector3(1, 0, 0).applyQuaternion(cameraQuaternion);
 
-  // Reset the direction
+  // Reset the direction vector
   direction.set(0, 0, 0);
 
   // Update direction based on user input
@@ -42,36 +42,69 @@ export function updateMovement(clock) {
   direction.multiplyScalar(speed);
 
   // Apply acceleration to velocity (smooth acceleration)
-  velocity.addScaledVector(direction, acceleration); // Multiply by delta
+  velocity.addScaledVector(direction, acceleration);
 
   // Clamp the velocity to the max speed
   if (velocity.length() > maxSpeed) {
     velocity.setLength(maxSpeed);
   }
 
-  if (camera.position.y > ground.position.y + 5) {
-    velocity.y -= gravity * delta; // Apply gravity
-  } else {
-    // Prevent falling through the ground
-    velocity.y = 0;
-    camera.position.y = ground.position.y + 5; // Correct camera height to ground level
+  // Perform collision check before moving
+  if (!checkCollisions()) {
+    // Apply velocity to the camera's position if no collision detected
+    camera.position.add(velocity);
   }
 
-  // Apply the velocity to the camera's position (move the camera)
-  camera.position.add(velocity); // Apply velocity to camera position directly
-
-  // Headbob Effect: Adjust camera's y position based on the movement direction and velocity
-  if (velocity.length() > 0.1) {
-    // Calculate headbob time based on velocity (only when moving)
-    headbobTime += delta * headbobFrequency;
-
-    // Apply a sine wave to the y position of the camera for the headbob effect
-    const headbobOffset = Math.sin(headbobTime) * headbobAmplitude;
-    camera.position.y += headbobOffset;
+  // Gravity effect (if above ground)
+  if (camera.position.y > ground.position.y + 5) {
+    velocity.y -= gravity * delta;
+  } else {
+    velocity.y = 0;
+    camera.position.y = ground.position.y + 5;
   }
 
   // Apply deceleration to the velocity (smooth stop)
-  velocity.multiplyScalar(0.9); // Gradual slowdown for smooth deceleration
+  velocity.multiplyScalar(0.9);
+}
+
+// Collision detection function using Raycaster
+function checkCollisions() {
+  const origin = camera.position.clone();
+
+  // Get the camera's velocity as the movement direction
+  const movementDirection = velocity.clone().normalize(); // Use the velocity to calculate direction
+  const maxRayDistance = 0.7; // Max distance to check, extended for safety
+
+  // Perform the raycast in the direction of movement
+  raycaster.ray.origin.copy(origin);
+  raycaster.ray.direction.copy(movementDirection);
+
+  // Perform the intersection test against all objects in the scene
+  const intersects = raycaster.intersectObjects(scene.children, true);
+
+  // Debugging the intersection results
+  console.log(intersects);
+
+  // If the ray intersects with an object, handle the collision
+  if (intersects.length > 0) {
+    const hit = intersects[0]; // The first object hit
+    const hitDistance = hit.distance;
+
+    // If the collision is very close (within the distance of the current movement speed), prevent camera movement
+    if (hitDistance < maxRayDistance) {
+      const blockDistance = Math.max(hitDistance - 0.1, 0); // Prevent the camera from passing through by adjusting the distance
+      // camera.position.addScaledVector(movementDirection, -blockDistance); // Adjust the camera based on velocity and direction
+
+      // **Stop the movement in the direction of the collision**
+      velocity.set(0, 0, 0); // Set the velocity to zero along the X and Z axes to prevent "gliding"
+
+      console.log("Camera blocked from passing through object");
+      return true; // Collision detected, block movement
+    }
+  }
+
+  // No collision detected, movement allowed
+  return false;
 }
 
 // Raycaster setup
@@ -132,8 +165,6 @@ export function checkRaycast() {
         break;
       case "Contact":
         window.location.href = "./contact.html"; // Redirect to contact
-        break;
-      default:
         break;
     }
 

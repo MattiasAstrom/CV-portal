@@ -76,27 +76,27 @@ const loader = new GLTFLoader();
 
 //Load the file
 //src="Assets/GameAssets/js/main.js"
-loader.load(
-  `./Assets/GameAssets/${objToRender}/scene.gltf`,
-  function (gltf) {
-    //If the file is loaded, add it to the scene
-    let object = gltf.scene;
-    // Set the position to (0, 1, -5)
-    object.position.set(0, 1, -5);
+// loader.load(
+//   `./Assets/GameAssets/${objToRender}/scene.gltf`,
+//   function (gltf) {
+//     //If the file is loaded, add it to the scene
+//     let object = gltf.scene;
+//     // Set the position to (0, 1, -5)
+//     object.position.set(0, 1, -5);
 
-    // Reduce the size by 90% (scale to 10% of original size)
-    object.scale.set(0.1, 0.1, 0.1);
-    scene.add(object);
-  },
-  function (xhr) {
-    //While it is loading, log the progress
-    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-  },
-  function (error) {
-    //If there is an error, log it
-    console.error(error);
-  }
-);
+//     // Reduce the size by 90% (scale to 10% of original size)
+//     object.scale.set(0.1, 0.1, 0.1);
+//     scene.add(object);
+//   },
+//   function (xhr) {
+//     //While it is loading, log the progress
+//     console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+//   },
+//   function (error) {
+//     //If there is an error, log it
+//     console.error(error);
+//   }
+// );
 
 function setCanvasSize() {
   const container = document.getElementById("webgl-canvas");
@@ -191,39 +191,40 @@ function createText(tag, text, size, depth, hover, materials, mirror = false) {
 
 function addObjects() {
   // Add random spheres to the scene
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 1; i++) {
     const geometry = new THREE.SphereGeometry(Math.random() * 2 + 1, 32, 32);
     const material = new THREE.MeshLambertMaterial({
       color: Math.random() * 0xffffff,
     });
     const sphere = new THREE.Mesh(geometry, material);
-    sphere.position.set(
-      Math.random() * 1000 - 500,
-      Math.random() * 10 + 2,
-      Math.random() * 1000 - 500
-    );
+    sphere.position.set(0, 4, -5);
+    // sphere.position.set(
+    //   Math.random() * 1000 - 500,
+    //   Math.random() * 10 + 2,
+    //   Math.random() * 1000 - 500
+    // );
     scene.add(sphere);
   }
   // Add random cubes to the scene
-  for (let i = 0; i < 50; i++) {
-    const geometry = new THREE.BoxGeometry(
-      Math.random() * 2 + 1,
-      Math.random() * 2 + 1,
-      Math.random() * 2 + 1
-    );
-    const material = new THREE.MeshLambertMaterial({
-      color: Math.random() * 0xffffff,
-    });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.set(
-      Math.random() * 1000 - 500,
-      Math.random() * 10 + 2,
-      Math.random() * 1000 - 500
-    );
+  // for (let i = 0; i < 50; i++) {
+  //   const geometry = new THREE.BoxGeometry(
+  //     Math.random() * 2 + 1,
+  //     Math.random() * 2 + 1,
+  //     Math.random() * 2 + 1
+  //   );
+  //   const material = new THREE.MeshLambertMaterial({
+  //     color: Math.random() * 0xffffff,
+  //   });
+  //   const cube = new THREE.Mesh(geometry, material);
+  //   cube.position.set(
+  //     Math.random() * 1000 - 500,
+  //     Math.random() * 10 + 2,
+  //     Math.random() * 1000 - 500
+  //   );
 
-    cube.castShadow = true;
-    scene.add(cube);
-  }
+  //   cube.castShadow = true;
+  //   scene.add(cube);
+  // }
 }
 
 function addGround() {
