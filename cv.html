@@ -6,7 +6,7 @@
     <title>CV</title>
     <link rel="stylesheet" type="text/css" href="Assets/CSS/stylesheet.css" />
   </head>
-  <body>
+  <body class="grid-container">
     <header>
       <div id="navbar-container"></div>
       <span class="openbtn" onclick="openNav()">☰</span>
@@ -25,21 +25,24 @@
       </div>
     </header>
 
-    <!-- Embed PDF using object -->
-     <div class="pdf-container">
+    <main>
 
-       <object
-       data="./Assets/Mattias_CV.pdf"
-       type="application/pdf"
-       width="100%"
-       height="100%"
-       style="padding: 0"
-       <p>
-         Your browser does not support PDFs.
-         <a href="./Assets/Mattias_CV.pdf">Download the CV</a>
+      <!-- Embed PDF using object -->
+      <div class="pdf-container">
+        
+        <object
+        data="./Assets/Mattias_CV.pdf"
+        type="application/pdf"
+        width="100%"
+        height="100%"
+        style="padding: 0"
+        <p>
+          Your browser does not support PDFs.
+          <a href="./Assets/Mattias_CV.pdf">Download the CV</a>
         </p>
       </object>
     </div>
+  </main>
 
     <!-- from what I know iframe is less code but doesn't offer a fallback -->
     <!-- <iframe src="./Assets/Mattias_CV.pdf" width="100%" height="600px"></iframe> -->
