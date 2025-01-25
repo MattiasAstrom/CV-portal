@@ -2,6 +2,7 @@
 import * as THREE from "https://cdn.skypack.dev/three@00.129.0";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 // import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls";
+import Stats from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/libs/stats.module";
 export { THREE };
 export { GLTFLoader };
 // export { OrbitControls };
@@ -26,8 +27,14 @@ setupPointerLock(); // Setup mouse pointer lock
 
 // Initialize ray visualizer only after the scene is set up
 
-initRayVisualizer();
+// initRayVisualizer();
+
+const stats = Stats();
+stats.showPanel(0, 1, 2, 3, 4, 5); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
+
 function gameLoop() {
+  stats.begin();
   updateMovement(clock); // Update movement
   animate(clock); // Render the scene
   if (shoot === true) {
@@ -39,7 +46,7 @@ function gameLoop() {
   // console.log("Active Drawcalls:", renderer.info.render.calls);
   // console.log("Textures in Memory", renderer.info.memory.textures);
   // console.log("Geometries in Memory", renderer.info.memory.geometries);
-
+  stats.end();
   requestAnimationFrame(gameLoop); // Continue the loop
 }
 

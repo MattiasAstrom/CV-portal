@@ -6,8 +6,8 @@ import {
   secondaryDirectionalLights,
   secondaryScenes,
   renderTargets,
-  skybox,
   skyboxes,
+  skybox,
   sceneCount,
   targetPlanes,
   directionalLight,
@@ -17,10 +17,10 @@ export const mixers = []; // Array to store mixers for each animated model
 
 // GAME LOOP
 let lastUpdateTime = 0;
-const updateInterval = 5;
+const updateInterval = 1;
 
 let lastRenderTargetUpdateTime = 0;
-const renderTargetUpdateInterval = 500;
+const renderTargetUpdateInterval = 100;
 
 let initialLightOffset = new THREE.Vector3(5, 5, 5);
 
@@ -70,16 +70,17 @@ export function animate(clock) {
   if (time - lastRenderTargetUpdateTime > renderTargetUpdateInterval) {
     for (let i = 0; i < sceneCount; i++) {
       if (isFacingCamera(targetPlanes[i]) && isInViewFrustum(targetPlanes[i])) {
+        targetPlanes[i].scale.set(1, 1, 1);
         renderer.setRenderTarget(renderTargets[i]);
         renderer.render(secondaryScenes[i], camera);
+
+        mixers.forEach((mixer) => {
+          mixer.update(clock.getDelta()); // Update each mixer with the delta time
+        });
       }
     }
     lastRenderTargetUpdateTime = time;
   }
-
-  mixers.forEach((mixer) => {
-    mixer.update(clock.getDelta()); // Update each mixer with the delta time
-  });
 
   const lightOffset = new THREE.Vector3().copy(initialLightOffset);
   lightOffset.applyMatrix4(camera.matrixWorld); // Move the light with the camera

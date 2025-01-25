@@ -6,22 +6,17 @@ export let scene,
   camera,
   renderer,
   ground,
+  skybox,
   skyboxes = [];
 // POSITION THE RENDER TARGET PLANES
 export let targetPlanes = [];
 export let borderPlanes = [];
-export let skybox;
+// export let skybox;
 // Define a radius for the half circle
-const radius = 20;
 export const sceneCount = 4;
-const angleStep = Math.PI / (sceneCount - 1); // Spread the scenes evenly
 // Get the canvas element and its container
 const canvas = document.getElementById("webgl-canvas");
 let pixelRatio = window.devicePixelRatio;
-let AA = true;
-if (pixelRatio > 1) {
-  AA = false;
-}
 
 // RENDER TARGETS (5 separate render targets)
 export const renderTargets = [];
@@ -38,7 +33,7 @@ export function initScene() {
     const color = 0xffffff; // white
     const near = 50;
     const far = 1000;
-    scene.fog = new THREE.Fog(color, 0, far);
+    scene.fog = new THREE.Fog(color, near, far);
   }
 
   camera = new THREE.PerspectiveCamera(
@@ -57,12 +52,12 @@ export function initScene() {
     minFilter: THREE.LinearFilter,
     magFilter: THREE.LinearFilter,
     format: THREE.RGBAFormat,
-    antialias: AA,
+    antialias: false,
     powerPreference: "high-performance",
   });
 
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.shadowMap.enabled = true;
+  renderer.setPixelRatio(window.devicePixelRatio * 0.5);
+  renderer.shadowMap.enabled = false;
   document.body.appendChild(renderer.domElement);
 
   // Set initial size based on the container
@@ -634,8 +629,8 @@ function addGround() {
   aoTexture.wrapT = THREE.RepeatWrapping;
 
   // Set texture repeats to control the scaling of textures
-  let xRep = 100;
-  let yRep = 100;
+  let xRep = 1;
+  let yRep = 1;
   albedoTexture.repeat.set(xRep, yRep);
   normalTexture.repeat.set(xRep, yRep);
   metallicTexture.repeat.set(xRep, yRep);
@@ -657,7 +652,7 @@ function addGround() {
   const geometry = new THREE.PlaneGeometry(100, 100);
 
   // Create the mesh with the geometry and the complex material
-  ground = new THREE.Mesh(geometry, groundMaterial);
+  ground = new THREE.Mesh(geometry);
 
   // Rotate the ground to be flat
   ground.rotation.x = -Math.PI / 2;
@@ -665,9 +660,6 @@ function addGround() {
 
   // Add the ground to the scene
   scene.add(ground);
-
-  geometry.dispose();
-  groundMaterial.dispose();
 }
 
 function addLighting() {
