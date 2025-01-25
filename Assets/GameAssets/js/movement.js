@@ -16,9 +16,7 @@ let headbobAmplitude = 0.1; // Amplitude of the headbob (how far up/down)
 let headbobFrequency = 10; // Frequency of the headbob (how fast it oscillates)
 let headbobTime = 0; // Track the elapsed time for headbob oscillation
 
-export function updateMovement(clock) {
-  const delta = clock.getDelta();
-
+export function updateMovement() {
   // Create a quaternion from the camera's Euler rotation
   const cameraQuaternion = new THREE.Quaternion().setFromEuler(camera.rotation);
 
@@ -88,7 +86,7 @@ function checkCollisions() {
     const hit = intersects[0]; // The first object hit
     const hitDistance = hit.distance;
 
-    console.log(`Collision detected at distance: ${hitDistance}`);
+    // console.log(`Collision detected at distance: ${hitDistance}`);
 
     // Handle collisions with the walls or enemies
     if (hitDistance < maxRayDistance) {
@@ -98,7 +96,7 @@ function checkCollisions() {
       // Optionally, adjust the camera position to avoid clipping into the object
       camera.position.addScaledVector(movementDirection, -0.1);
 
-      console.log("Camera blocked from passing through object");
+      // console.log("Camera blocked from passing through object");
       return true; // Collision detected, block movement
     }
   }
@@ -123,19 +121,6 @@ function checkCollisions() {
     // Stop downward velocity if near ground
     if (velocity.y < 0) {
       velocity.y = 0;
-    }
-  }
-
-  // Handle ramps: Calculate if the surface is sloped and adjust Y based on surface normal
-  if (intersects.length > 0) {
-    const surfaceNormal = intersects[0].face.normal; // Normal of the intersected surface
-
-    // If the surface is sloped (not flat), adjust Y position based on the normal
-    if (Math.abs(surfaceNormal.y) < 0.9) {
-      // Adjust slope threshold as needed
-      const rampAngleAdjustment = (1 - Math.abs(surfaceNormal.y)) * 0.2; // Fine-tune the adjustment factor
-      camera.position.y -= rampAngleAdjustment; // Adjust camera Y to follow the ramp
-      velocity.y = 0; // Prevent falling off the ramp
     }
   }
 
@@ -186,21 +171,32 @@ export function checkRaycast() {
   // If the ray hits an object, update the rayLine to reflect the intersection
   if (intersects.length > 0) {
     const hitObject = intersects[0].object;
-    switch (hitObject.name) {
+    switch (hitObject.tag) {
       case "Home":
         window.location.href = "./index.html"; // Redirect to home
+        console.log("Home hit");
         break;
       case "About":
         window.location.href = "./about.html"; // Redirect to about
+        console.log("About hit");
+
         break;
       case "Projects":
         window.location.href = "./projects.html"; // Redirect to projects
+        console.log("Projects hit");
+
         break;
       case "CV":
         window.location.href = "./cv.html"; // Redirect to CV
+        console.log("CV hit");
+
         break;
       case "Contact":
         window.location.href = "./contact.html"; // Redirect to contact
+        console.log("Contact hit");
+        break;
+      default:
+        console.log("No clue what you hit mate");
         break;
     }
 

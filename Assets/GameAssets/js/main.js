@@ -1,12 +1,15 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js";
+// import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.129.0/build/three.module.js";
+import * as THREE from "https://cdn.skypack.dev/three@00.129.0";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
+// import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls";
 export { THREE };
 export { GLTFLoader };
+// export { OrbitControls };
 
 import { initScene, scene, camera, renderer } from "./scene.js";
 import { updateMovement } from "./movement.js";
 import { setupEventListeners } from "./input.js";
-import { setupPointerLock, shoot } from "./mouseControl.js";
+import { setupPointerLock, Shoot, shoot } from "./mouseControl.js";
 import { animate } from "./animate.js";
 import { addTextBox } from "./scene.js"; // Import the function to create the box
 import { checkRaycast, initRayVisualizer } from "./movement.js"; // Correct import of initRayVisualizer
@@ -26,11 +29,17 @@ setupPointerLock(); // Setup mouse pointer lock
 initRayVisualizer();
 function gameLoop() {
   updateMovement(clock); // Update movement
-  animate(); // Render the scene
+  animate(clock); // Render the scene
   if (shoot === true) {
     checkRaycast(); // Check raycast and update the ray line
-    shoot = false;
+    Shoot(false);
   }
+
+  // console.log("Scene polycount:", renderer.info.render.triangles);
+  // console.log("Active Drawcalls:", renderer.info.render.calls);
+  // console.log("Textures in Memory", renderer.info.memory.textures);
+  // console.log("Geometries in Memory", renderer.info.memory.geometries);
+
   requestAnimationFrame(gameLoop); // Continue the loop
 }
 

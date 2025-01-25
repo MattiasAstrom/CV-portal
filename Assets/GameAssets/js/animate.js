@@ -1,6 +1,90 @@
 import { THREE } from "./main.js"; // Import THREE from main.js
-import { renderer, scene, camera } from "./scene.js"; // Import renderer, scene, and camera from scene.js
+import {
+  renderer,
+  scene,
+  camera,
+  secondaryDirectionalLights,
+  secondaryScenes,
+  renderTargets,
+  skybox,
+  skyboxes,
+  sceneCount,
+  targetPlanes,
+  directionalLight,
+} from "./scene.js"; // Import renderer, scene, and camera from scene.js
 
-export function animate() {
+export const mixers = []; // Array to store mixers for each animated model
+
+// GAME LOOP
+let lastUpdateTime = 0;
+const updateInterval = 5;
+
+let lastRenderTargetUpdateTime = 0;
+const renderTargetUpdateInterval = 500;
+
+let initialLightOffset = new THREE.Vector3(5, 5, 5);
+
+// Function to check if the target is within the camera's view frustum
+function isInViewFrustum(target) {
+  const frustum = new THREE.Frustum();
+  const cameraViewProjectionMatrix = camera.projectionMatrix
+    .clone()
+    .multiply(camera.matrixWorldInverse);
+  frustum.setFromProjectionMatrix(cameraViewProjectionMatrix);
+  return frustum.intersectsObject(target);
+}
+
+// Function to check if the render target is facing the camera
+function isFacingCamera(target) {
+  const targetDirection = new THREE.Vector3();
+  target.getWorldDirection(targetDirection);
+
+  const cameraDirection = new THREE.Vector3();
+  camera.getWorldDirection(cameraDirection);
+
+  // Use dot product to check if target is facing the camera (cosine of the angle between them)
+  let dotProduct = targetDirection.dot(cameraDirection);
+  dotProduct = dotProduct * -1;
+  // Consider the target to be facing the camera if dot product is greater than a threshold (e.g., 0.5)
+  return dotProduct > 0.9;
+}
+
+export function animate(clock) {
+  const time = new Date().getTime();
+  if (time - lastUpdateTime > updateInterval) {
+    // Update directional light positions for secondary scenes
+    secondaryDirectionalLights.forEach((light, index) => {
+      light.position.x = Math.cos(time * 0.0002 + index) * 10;
+      light.position.z = Math.sin(time * 0.0002 + index) * 10;
+    });
+    lastUpdateTime = time;
+  }
+
+  // Rotate skyboxes continuously
+  const rotationSpeed = 0.0001; // Adjust this value for faster/slower rotation
+  skyboxes.forEach((item) => {
+    item.rotation.y += rotationSpeed; // Rotate around Y axis continuously
+  });
+  skybox.rotation.y += rotationSpeed; //
+
+  if (time - lastRenderTargetUpdateTime > renderTargetUpdateInterval) {
+    for (let i = 0; i < sceneCount; i++) {
+      if (isFacingCamera(targetPlanes[i]) && isInViewFrustum(targetPlanes[i])) {
+        renderer.setRenderTarget(renderTargets[i]);
+        renderer.render(secondaryScenes[i], camera);
+      }
+    }
+    lastRenderTargetUpdateTime = time;
+  }
+
+  mixers.forEach((mixer) => {
+    mixer.update(clock.getDelta()); // Update each mixer with the delta time
+  });
+
+  const lightOffset = new THREE.Vector3().copy(initialLightOffset);
+  lightOffset.applyMatrix4(camera.matrixWorld); // Move the light with the camera
+  directionalLight.position.copy(lightOffset);
+
+  renderer.setRenderTarget(null);
   renderer.render(scene, camera);
 }

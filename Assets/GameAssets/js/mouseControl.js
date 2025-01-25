@@ -2,6 +2,10 @@ import { clock } from "./main.js"; // Import clock from main.js
 import { camera } from "./scene.js";
 
 export let shoot;
+export function Shoot(value) {
+  shoot = value;
+}
+
 export let mouseX = 0,
   mouseY = 0;
 export let isPointerLocked = false;
