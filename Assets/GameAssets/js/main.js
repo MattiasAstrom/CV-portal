@@ -49,5 +49,4 @@ function gameLoop() {
   stats.end();
   requestAnimationFrame(gameLoop); // Continue the loop
 }
-
 gameLoop();

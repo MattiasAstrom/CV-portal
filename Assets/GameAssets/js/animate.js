@@ -13,6 +13,47 @@ import {
   directionalLight,
 } from "./scene.js"; // Import renderer, scene, and camera from scene.js
 
+import { EffectComposer } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/postprocessing/ShaderPass.js";
+import { FXAAShader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/shaders/FXAAShader.js"; // For anti-aliasing
+import { UnrealBloomPass } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/postprocessing/UnrealBloomPass.js";
+
+let composer;
+let renderTarget;
+
+export function animComposerInit() {
+  // Initialize the composer
+
+  // Create a smaller render target (half resolution)
+  renderTarget = new THREE.WebGLRenderTarget(
+    window.innerWidth / 2,
+    window.innerHeight / 2
+  );
+  composer = new EffectComposer(renderer);
+
+  // First pass is the render pass
+  const renderPass = new RenderPass(scene, camera);
+  composer.addPass(renderPass);
+
+  // Add FXAA (Fast Approximate Anti-Aliasing) pass
+  const fxaaPass = new ShaderPass(FXAAShader);
+  fxaaPass.uniforms["resolution"].value.set(
+    1 / (window.innerWidth / 2), // FXAA applied at half resolution
+    1 / (window.innerHeight / 2)
+  );
+  composer.addPass(fxaaPass);
+
+  // Optionally add Bloom Pass (uncomment if desired)
+  const bloomPass = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2), // Half resolution for bloom
+    0.15, // Bloom Strength
+    0.4, // Bloom Radius
+    0.85 // Bloom Threshold
+  );
+  composer.addPass(bloomPass);
+}
+
 export const mixers = []; // Array to store mixers for each animated model
 
 // GAME LOOP
@@ -87,5 +128,9 @@ export function animate(clock) {
   directionalLight.position.copy(lightOffset);
 
   renderer.setRenderTarget(null);
-  renderer.render(scene, camera);
+  if (composer) {
+    renderer.render(scene, camera);
+    // composer.render();
+  } else {
+  }
 }

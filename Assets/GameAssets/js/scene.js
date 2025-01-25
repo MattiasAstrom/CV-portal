@@ -1,6 +1,7 @@
 import { THREE } from "./main.js";
 import { GLTFLoader } from "./main.js";
 import { mixers } from "./animate.js";
+import { animComposerInit } from "./animate.js";
 // Global variablesobjloadtextureloader
 export let scene,
   camera,
@@ -52,7 +53,6 @@ export function initScene() {
     minFilter: THREE.LinearFilter,
     magFilter: THREE.LinearFilter,
     format: THREE.RGBAFormat,
-    antialias: false,
     powerPreference: "high-performance",
   });
 
@@ -96,7 +96,7 @@ export function initScene() {
   // createText("Projects", "Projects", 2, 1, 12, textMaterial);
   // createText("CV", "CV", 2, 1, 16, textMaterial);
   // createText("Contact", "Contact", 2, 1, 20, textMaterial);
-
+  animComposerInit();
   // Resize event listener
   new GLTFLoader().load(
     "Assets/GameAssets/models/animals/glTF/Wolf.gltf",
@@ -133,14 +133,15 @@ function addRenderTargets() {
       renderTargetWidth,
       renderTargetHeight,
       {
-        antialias: false,
+        antialias: true,
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
         format: THREE.RGBAFormat,
-        antialias: false,
         powerPreference: "high-performance",
       }
     );
+    renderer.setPixelRatio(window.devicePixelRatio * 0.6);
+    renderer.shadowMap.enabled = true;
   }
 
   // MATERIALS FOR RENDER TARGETS
