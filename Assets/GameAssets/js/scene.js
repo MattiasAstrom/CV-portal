@@ -56,7 +56,7 @@ export function initScene() {
     powerPreference: "high-performance",
   });
 
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(window.devicePixelRatio * 0.7);
   renderer.shadowMap.enabled = false;
   document.body.appendChild(renderer.domElement);
 
@@ -64,9 +64,9 @@ export function initScene() {
   setCanvasSize();
 
   // Lighting setup
-  directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
   directionalLight.position.set(5, 5, 5).normalize();
-  directionalLight.castShadow = true;
+  // directionalLight.castShadow = true;
   scene.add(directionalLight);
 
   // Ambient Light
@@ -144,13 +144,10 @@ function addRenderTargets() {
       renderTargetHeight,
       {
         antialias: true,
-        minFilter: THREE.LinearFilter,
-        magFilter: THREE.LinearFilter,
-        format: THREE.RGBAFormat,
         powerPreference: "high-performance",
       }
     );
-    renderer.setPixelRatio(window.devicePixelRatio * 0.6);
+    renderer.setPixelRatio(window.devicePixelRatio * 0.7);
     renderer.shadowMap.enabled = true;
   }
 
@@ -217,12 +214,12 @@ function addRenderTargets() {
     // targetPlanes.push(targetPlane);
 
     // Directional light for each scene
-    const secondaryDirectionalLight = new THREE.DirectionalLight(0xffffff, 5);
-    secondaryDirectionalLight.position.set(-10, 10, 10);
+    const secondaryDirectionalLight = new THREE.DirectionalLight(0xffffff, 5.5);
+    secondaryDirectionalLight.position.set(-20, 20, 20);
     secondaryDirectionalLight.castShadow = true;
-    secondaryDirectionalLight.shadow.mapSize.width = 512;
-    secondaryDirectionalLight.shadow.mapSize.height = 512;
-    const d = 35;
+    secondaryDirectionalLight.shadow.mapSize.width = 256;
+    secondaryDirectionalLight.shadow.mapSize.height = 256;
+    const d = 45;
     secondaryDirectionalLight.shadow.camera.left = -d;
     secondaryDirectionalLight.shadow.camera.right = d;
     secondaryDirectionalLight.shadow.camera.top = d;

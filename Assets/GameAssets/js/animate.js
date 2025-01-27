@@ -61,7 +61,7 @@ let lastUpdateTime = 0;
 const updateInterval = 1;
 
 let lastRenderTargetUpdateTime = 0;
-const renderTargetUpdateInterval = 0;
+const renderTargetUpdateInterval = 50;
 
 let initialLightOffset = new THREE.Vector3(5, 5, 5);
 
@@ -111,17 +111,16 @@ export function animate(clock) {
   if (time - lastRenderTargetUpdateTime > renderTargetUpdateInterval) {
     for (let i = 0; i < sceneCount; i++) {
       if (isFacingCamera(targetPlanes[i]) && isInViewFrustum(targetPlanes[i])) {
-        targetPlanes[i].scale.set(1, 1, 1);
+        // targetPlanes[i].scale.set(1, 1, 1);
         renderer.setRenderTarget(renderTargets[i]);
         renderer.render(secondaryScenes[i], camera);
-
-        mixers.forEach((mixer) => {
-          mixer.update(clock.getDelta()); // Update each mixer with the delta time
-        });
       }
     }
     lastRenderTargetUpdateTime = time;
   }
+  mixers.forEach((mixer) => {
+    mixer.update(clock.getDelta()); // Update each mixer with the delta time
+  });
 
   const lightOffset = new THREE.Vector3().copy(initialLightOffset);
   lightOffset.applyMatrix4(camera.matrixWorld); // Move the light with the camera
@@ -129,8 +128,8 @@ export function animate(clock) {
 
   renderer.setRenderTarget(null);
   if (composer) {
-    composer.render();
-  } else {
     renderer.render(scene, camera);
+  } else {
+    composer.render();
   }
 }
