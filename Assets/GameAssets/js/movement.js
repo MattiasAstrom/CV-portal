@@ -16,7 +16,7 @@ let headbobAmplitude = 0.1; // Amplitude of the headbob (how far up/down)
 let headbobFrequency = 10; // Frequency of the headbob (how fast it oscillates)
 let headbobTime = 0; // Track the elapsed time for headbob oscillation
 
-export function updateMovement() {
+export function updateMovement(clock) {
   // Create a quaternion from the camera's Euler rotation
   const cameraQuaternion = new THREE.Quaternion().setFromEuler(camera.rotation);
 
@@ -55,7 +55,7 @@ export function updateMovement() {
 
   // Gravity effect (if above ground)
   if (camera.position.y > ground.position.y + 5) {
-    velocity.y -= gravity * delta;
+    velocity.y -= gravity * clock.getDelta();
   } else {
     velocity.y = 0;
     camera.position.y = ground.position.y + 5;
@@ -204,16 +204,16 @@ export function checkRaycast() {
     const distance = intersects[0].distance;
 
     // Update the rayLine to match the intersection point
-    const endPoint = raycaster.ray.direction.clone().multiplyScalar(distance);
-    rayLine.geometry.setFromPoints([
-      raycaster.ray.origin, // Start from the camera position
-      endPoint, // End at the intersection point
-    ]);
-  } else {
+    //   const endPoint = raycaster.ray.direction.clone().multiplyScalar(distance);
+    //   rayLine.geometry.setFromPoints([
+    //     raycaster.ray.origin, // Start from the camera position
+    //     endPoint, // End at the intersection point
+    //   ]);
+    // } else {
     // If no intersection, the ray should be drawn at a fixed length (e.g., 500 units)
-    rayLine.geometry.setFromPoints([
-      raycaster.ray.origin, // Start from the camera position
-      raycaster.ray.direction.clone().multiplyScalar(500), // Extend the ray 500 units
-    ]);
+    // rayLine.geometry.setFromPoints([
+    //   raycaster.ray.origin, // Start from the camera position
+    //   raycaster.ray.direction.clone().multiplyScalar(500), // Extend the ray 500 units
+    // ]);
   }
 }

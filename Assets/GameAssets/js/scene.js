@@ -32,7 +32,7 @@ export function initScene() {
   scene = new THREE.Scene();
   {
     const color = 0xffffff; // white
-    const near = 50;
+    const near = 5;
     const far = 1000;
     scene.fog = new THREE.Fog(color, near, far);
   }
@@ -49,14 +49,14 @@ export function initScene() {
   // RENDERER MAIN
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: false,
-    minFilter: THREE.LinearFilter,
-    magFilter: THREE.LinearFilter,
-    format: THREE.RGBAFormat,
+    antialias: true,
+    // minFilter: THREE.LinearFilter,
+    // magFilter: THREE.LinearFilter,
+    // format: THREE.RGBAFormat,
     powerPreference: "high-performance",
   });
 
-  renderer.setPixelRatio(window.devicePixelRatio * 0.5);
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.shadowMap.enabled = false;
   document.body.appendChild(renderer.domElement);
 
@@ -123,6 +123,16 @@ export function initScene() {
         // Store the mixer so it can be updated in the render loop
         mixers.push(mixer); // Add to the mixers array
       }
+    }
+  );
+  new GLTFLoader().load(
+    "Assets/GameAssets/glb/firstiteration.glb",
+    function (gltf) {
+      gltf.scene.traverse(function (object) {
+        object.receiveShadow = true;
+      });
+      gltf.scene.position.set(0, 1, 0); // Offset the ground for each scene
+      scene.add(gltf.scene);
     }
   );
   window.addEventListener("resize", onWindowResize, false);
@@ -207,7 +217,7 @@ function addRenderTargets() {
     // targetPlanes.push(targetPlane);
 
     // Directional light for each scene
-    const secondaryDirectionalLight = new THREE.DirectionalLight(0xffffff, 10);
+    const secondaryDirectionalLight = new THREE.DirectionalLight(0xffffff, 5);
     secondaryDirectionalLight.position.set(-10, 10, 10);
     secondaryDirectionalLight.castShadow = true;
     secondaryDirectionalLight.shadow.mapSize.width = 512;
@@ -225,16 +235,14 @@ function addRenderTargets() {
 
     // Load forest assets (trees, rocks, etc.)
     new GLTFLoader().load(
-      "Assets/GameAssets/glb/dark-ground.glb",
+      "Assets/GameAssets/glb/testround.glb",
       function (gltf) {
         gltf.scene.traverse(function (object) {
           object.receiveShadow = true;
         });
-        gltf.scene.position.set(0, 0, 0); // Offset the ground for each scene
         secondaryScenes[i].add(gltf.scene);
       }
     );
-
     // Add other objects like trees, rocks, etc...
     // Example:
     new GLTFLoader().load(
@@ -651,7 +659,6 @@ function addGround() {
 
   // Create the geometry for the ground (plane)
   const geometry = new THREE.PlaneGeometry(100, 100);
-
   // Create the mesh with the geometry and the complex material
   ground = new THREE.Mesh(geometry);
 

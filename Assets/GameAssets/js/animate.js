@@ -61,7 +61,7 @@ let lastUpdateTime = 0;
 const updateInterval = 1;
 
 let lastRenderTargetUpdateTime = 0;
-const renderTargetUpdateInterval = 100;
+const renderTargetUpdateInterval = 0;
 
 let initialLightOffset = new THREE.Vector3(5, 5, 5);
 
@@ -129,8 +129,8 @@ export function animate(clock) {
 
   renderer.setRenderTarget(null);
   if (composer) {
-    renderer.render(scene, camera);
-    // composer.render();
+    composer.render();
   } else {
+    renderer.render(scene, camera);
   }
 }
