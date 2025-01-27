@@ -46,10 +46,10 @@ export function initScene() {
   camera.rotation.order = "YXZ"; // Set the correct rotation order
   camera.position.set(0, 5, 20); // Initial camera position
 
-  // RENDERER
+  // RENDERER MAIN
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: true,
+    antialias: false,
     minFilter: THREE.LinearFilter,
     magFilter: THREE.LinearFilter,
     format: THREE.RGBAFormat,
