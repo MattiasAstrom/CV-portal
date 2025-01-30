@@ -25,30 +25,80 @@
       </div>
     </header>
 
-    <main>
+<main class="cv-main">
+    <header>
+      <h1>John Doe</h1>
+      <p>Web Developer</p>
+    </header>
 
-      <!-- Embed PDF using object -->
-      <div class="pdf-container">
-        
-        <object
-        data="./Assets/Mattias_CV.pdf"
-        type="application/pdf"
-        width="100%"
-        height="100%"
-        style="padding: 0"
-        <p>
-          Your browser does not support PDFs.
-          <a href="./Assets/Mattias_CV.pdf">Download the CV</a>
-        </p>
-      </object>
-    </div>
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate web developer with a focus on building modern and responsive websites. I have a strong background in HTML, CSS, JavaScript, and web design. I love learning new technologies and am always looking for new challenges.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML5</li>
+        <li>CSS3 (Flexbox, Grid)</li>
+        <li>JavaScript (ES6+)</li>
+        <li>React & Node.js</li>
+        <li>Version Control (Git)</li>
+        <li>Responsive Design</li>
+      </ul>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <h2>Education</h2>
+      <p><strong>Bachelor of Science in Computer Science</strong> - University of Example (2018 - 2022)</p>
+      <p>Courses: Web Development, Data Structures, Algorithms, Software Engineering</p>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <p><strong>Web Developer</strong> - Company XYZ (2022 - Present)</p>
+      <ul>
+        <li>Built and maintained responsive websites using HTML, CSS, and JavaScript.</li>
+        <li>Collaborated with UX/UI designers to improve website functionality and user experience.</li>
+        <li>Integrated third-party APIs to enhance website features.</li>
+      </ul>
+
+      <p><strong>Intern Web Developer</strong> - Company ABC (2021 - 2022)</p>
+      <ul>
+        <li>Assisted in developing features for client websites using React.</li>
+        <li>Worked with senior developers to debug and optimize code.</li>
+        <li>Participated in team meetings and code reviews.</li>
+      </ul>
+    </section>
+
+    <!-- Socials & Contact Section -->
+    <section id="socials-contact">
+      <h2>Socials & Contact</h2>
+      <ul>
+        <li><a href="https://github.com/johndoe" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/johndoe/" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:johndoe@example.com">Email: johndoe@example.com</a></li>
+      </ul>
+      <button id="contactButton" onclick="alert('Thank you for contacting me!')">Contact Me</button>
+    </section>
+
+    <!-- Print Button -->
+    <section id="print-section">
+      <button onclick="window.print()">Print CV</button>
+    </section>
   </main>
 
     <!-- from what I know iframe is less code but doesn't offer a fallback -->
     <!-- <iframe src="./Assets/Mattias_CV.pdf" width="100%" height="600px"></iframe> -->
 
     <footer>This is the footer.</footer>
-    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
     <script src="Assets/JS/nav.js"></script>
+    <script src="Assets/JS/easteregg.js"></script>
   </body>
 </html>

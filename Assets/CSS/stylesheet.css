@@ -33,6 +33,7 @@ footer {
   grid-column: 1/4;
   grid-row: 3/4;
   justify-items: center;
+  text-align: center;
   padding: 1%;
 }
 
@@ -41,14 +42,12 @@ article {
   display: inline-block;
   margin: 1rem;
 }
+/* Make sure the body or the container has these properties */
 
 .nav {
-  z-index: 1;
+  /* z-index: 1;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-self: center;
-  align-content: center;
+  flex-wrap: wrap; */
 }
 
 .nav ol {
@@ -113,6 +112,7 @@ article {
 .mobile-nav,
 .openbtn {
   display: none;
+  text-align: center;
 }
 
 /* Set up a 3D container perspective */
@@ -228,7 +228,7 @@ article {
   }
 }
 
-.pdf-container {
+/* .pdf-container {
   flex-grow: 1;
   display: flex;
   height: 100vh;
@@ -288,7 +288,7 @@ article {
 .box {
   background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWM4NTdlMDVxaXBqY2YweXY3dXBkbjZhaTlqeDNhd3QwZHdrZDI2NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kPVTbiTORIopy/giphy.gif");
   /* background-image: url("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExazF0c2U0dmt5NjJmd29memV4aGp5aDgxbGxxYjk4YW8wZnhtcDFhbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/78XCFBGOlS6keY1Bil/giphy.gif"); */
-  background-color: #000;
+/* background-color: #000;
   background-repeat: no-repeat;
   background-size: 500px 500px;
   position: relative;
@@ -316,7 +316,7 @@ article {
   height: 15px;
   width: 100%;
   transform: skewX(45deg);
-}
+} */
 /* .circle {
   position: absolute;
   border-radius: 50%;
@@ -363,7 +363,7 @@ img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: -1;
-  /* backdrop-filter: blur(10px); */
+  backdrop-filter: blur(10px);
 }
 
 .background-about .container {
@@ -385,7 +385,7 @@ img {
   align-items: center;
   text-align: center;
   position: relative;
-  z-index: -2;
+  z-index: -2000;
 }
 
 .background-homepage::before {
@@ -395,7 +395,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--overlay-color, rgba(0, 0, 0, 0.6));
   z-index: -1;
   /* backdrop-filter: blur(10px); */
 }
@@ -494,7 +494,6 @@ nav button:hover {
   margin: 10px;
   width: 50%;
   outline: 1px solid blue;
-
   transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 /* Image section of the card */
@@ -712,8 +711,8 @@ nav button:hover {
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  background-color: rgb(0, 0, 0); /* Black fallback color */
-  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
+  background-color: rgb(99, 88, 88); /* Black fallback color */
+  background-color: rgba(102, 87, 87, 0.9); /* Black w/opacity */
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
@@ -749,6 +748,7 @@ nav button:hover {
 
 /* Position the close button (top right corner) */
 .overlay .closebtn {
+  color: #2196f3;
   position: absolute;
   top: 20px;
   right: 45px;
@@ -784,4 +784,192 @@ nav button:hover {
   background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
   color: #f1f1f1; /* Grey text */
   width: 100%;
+}
+
+/* body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+
+/* Contact Form */
+.contact-form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  display: none; /* Hidden by default */
+}
+
+.submit-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
+
+/* CV */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-main {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Other regular styles for the screen display */
+header {
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Print styles */
+@media print {
+  /* Hide elements you don't want to print */
+  body * {
+    visibility: hidden;
+  }
+
+  .cv-main,
+  .cv-main * {
+    visibility: visible;
+  }
+
+  /* Remove box shadow and any margin that may cause overflow */
+  .cv-main {
+    margin: 0;
+    padding: 10px;
+    box-shadow: none;
+    page-break-inside: avoid; /* Prevent page break inside the CV */
+  }
+
+  /* Hide the print button when printing */
+  #print-section,
+  #contactButton {
+    display: none;
+  }
+
+  /* Prevent page break inside sections */
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* Optional: Adjust font size or margins for printing */
+  .cv-main h1 {
+    font-size: 2rem;
+  }
+
+  .cv-main h2 {
+    font-size: 1.5rem;
+  }
+
+  .cv-main p,
+  .cv-main ul {
+    font-size: 1rem;
+  }
+
+  /* Adjust page margins to fit content better */
+  @page {
+    margin: 10mm;
+  }
 }

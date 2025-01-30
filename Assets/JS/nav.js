@@ -1,3 +1,7 @@
+function openPrintPage() {
+  window.print();
+}
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -29,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <ol>
         <li>
           <a href="./3dgame.html" class="threed-button">3D</a>
+        </li>
+        <li>
+           <a class="changeButton"></a>
         </li>
         <li>
           <a href="./index.html">Home</a>

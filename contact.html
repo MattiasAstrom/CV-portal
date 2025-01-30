@@ -26,7 +26,48 @@
     </header>
 
     <main>
-      <div class="snake-game-container">
+    <div class="background-homepage">
+      </div>
+       <div class="contact-form-container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" 
+                       name="name" 
+                       placeholder="Your Name" required>
+                <span class="error-message" id="nameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" 
+                       name="email" 
+                       placeholder="Your Email" required>
+                <span class="error-message" id="emailError"></span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" 
+                       name="phone" 
+                       placeholder="Your Phone Number" required>
+                <span class="error-message" id="phoneError"></span>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" 
+                          name="message" 
+                          placeholder="Your Message" 
+                          rows="5" required></textarea>
+                <span class="error-message" 
+                      id="messageError"></span>
+            </div>
+            <button type="submit" 
+                    class="submit-button">
+              Send Message
+            </button>
+        </form>
+    </div>
+      <!-- <div class="snake-game-container">
         <canvas id="snake-gameCanvas" width="400" height="400"></canvas>
         <div id="gameStatus">
           <button id="startBtnSnake">Start Game</button>
@@ -35,10 +76,10 @@
             <button id="retryBtnSnake" style="display: none">Retry</button>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <button id="btn" class="magic">Press Me!</button>
-      <div id="boxes" class="boxes"></div>
+      <!-- <button id="btn" class="magic">Press Me!</button>
+      <div id="boxes" class="boxes"></div> -->
     </main>
 
     <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
@@ -46,6 +87,8 @@
 
     <script src="Assets/JS/nav.js"></script>
     <script src="Assets/JS/snake.js"></script>
-    <script src="Assets/JS/magicbox.js"></script>
+    <!-- <script src="Assets/JS/magicbox.js"></script> -->
+    <script src="Assets/JS/easteregg.js"></Script>
+      <script src="Assets/JS/contact.js"></script>
   </body>
 </html>
