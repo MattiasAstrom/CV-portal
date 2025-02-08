@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function cycleColors() {
-    const body = document.querySelector(".background-homepage");
-
+    const body = document.querySelector("main");
+    console.log(body);
     let nextIndex = (currentIndex + 1) % rainbowColors.length; // Get the next color index
     let currentColor = rainbowColors[currentIndex];
     let nextColor = rainbowColors[nextIndex];

@@ -23,7 +23,6 @@ window.onscroll = function () {
     button.style.display = "none"; // Hide button when at the top
   }
 };
-
 // Load the navigation bar dynamically
 document.addEventListener("DOMContentLoaded", () => {
   // Correctly formatted HTML string for navbar
