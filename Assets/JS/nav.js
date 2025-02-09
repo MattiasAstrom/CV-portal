@@ -29,13 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPage = window.location.pathname.split("/").pop(); // Get the current page name (e.g., index.html)
   const links = document.querySelectorAll(".nav a");
 
-  links.forEach((link) => {
-    // Check if the link's href matches the current page
+  for (const link of links) {
     if (link.href.includes(currentPage)) {
-      console.log(currentPage);
-      link.classList.add("active"); // Add 'active' class to the current page's link
+      link.classList.add("active");
+      break; //adding break since i noticed while hosting on githubpages first time it loads every item in nav gets "active" added
     }
-  });
+  }
 });
 
 /* Open */
