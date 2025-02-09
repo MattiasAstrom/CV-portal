@@ -1,56 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects</title>
-    <link rel="stylesheet" type="text/css" href="Assets/CSS/stylesheet.css" />
-  </head>
-  <body class="grid-container content">
-    <header>
-      <div id="navbar-container">
-      </div>
 
-      <span class="openbtn" onclick="openNav()">☰</span>
-      <div id="myNav" class="overlay">
-        <a class="closebtn" onclick="closeNav()"></a>
-        <div class="overlay-content">
-          <ol id="navbar-links"></ol>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+  <link rel="stylesheet" type="text/css" href="Assets/CSS/stylesheet.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Liter&display=swap"
+    rel="stylesheet"/>
+  <script src="Assets/JS/nav.js" defer></script>
+  <script src="Assets/JS/easteregg.js" defer></script>
+</head>
+
+<body class="grid-container content">
+  <header>
+    <div id="navbar-container">
+      <nav class="nav">
+        <ol>
+          <li><a href="./3dgame.html" class="threed-button">3D</a></li>
+          <li><a class="changeButton"></a></li>
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./projects.html">Projects</a></li>
           <li><a href="./cv.html">CV</a></li>
           <li><a href="./contact.html">Contact</a></li>
-          </ol>
-        </div>
+        </ol>
+      </nav>
+    </div>
+
+    <span class="openbtn" onclick="openNav()">☰</span>
+    <div id="myNav" class="overlay">
+      <a class="closebtn" onclick="closeNav()"></a>
+      <div class="overlay-content">
+        <ol id="navbar-links"></ol>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./projects.html">Projects</a></li>
+        <li><a href="./cv.html">CV</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        </ol>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <div class="flex-container">
-          <div class="flex-container-image">
-            <img src="Assets/images/Panda.jpg" alt="pannda picture"/>
-          </div>
-            <div class="flex-container-details">
-              <p>
-                <span class="first-word">Panda</span>, amidst the bamboo forests,
-                where the leaves rustle and the world is full of naps, there exists a
-                panda unlike any other. Known as the Glorious Coder, this panda
-                effortlessly slays bugs while sipping on coffee like it’s his nectar.
-                A true master of the keyboard, he types faster than you can say
-                "bamboo." When he's not fixing code, he's munching on bamboo like
-                it's his job — and honestly, it probably should be. With one paw on
-                the keyboard and the other holding a coffee cup, this panda is living
-                his best life, one line of code (and bamboo stalk) at a time. 🐼☕💻
-              </p>
-            </div>
+  <main>
+    <div class="flex-container">
+      <div class="flex-container-image">
+        <img src="Assets/images/Panda.jpg" alt="pannda picture" />
       </div>
-    </main>
+      <div class="flex-container-details">
+        <p>
+          Panda, amidst the bamboo forests,
+          where the leaves rustle and the world is full of naps, there exists a
+          panda unlike any other. Known as the Glorious Coder, this panda
+          effortlessly slays bugs while sipping on coffee like it’s his nectar.
+          A true master of the keyboard, he types faster than you can say
+          "bamboo." When he's not fixing code, he's munching on bamboo like
+          it's his job — and honestly, it probably should be. With one paw on
+          the keyboard and the other holding a coffee cup, this panda is living
+          his best life, one line of code (and bamboo stalk) at a time. 🐼☕💻
+        </p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet eaque voluptate reprehenderit consequuntur
+          sequi nemo eum, nulla cumque illo aliquid adipisci optio tempora, qui vel at itaque sapiente fugiat voluptas!
+          Suscipit quasi assumenda explicabo quas aliquam sed alias nesciunt nostrum eaque numquam modi quo, mollitia
+          cumque quam esse, soluta consequatur sapiente? Corporis asperiores saepe, dignissimos tenetur beatae sunt
+          deserunt optio harum aut! Dolorem voluptatum recusandae tenetur tempore, cupiditate maxime illo beatae
+          voluptatem numquam, praesentium vel nemo fugit dolore ipsum, vero eos dolor illum minus aperiam. Autem omnis
+          nemo doloribus minima in necessitatibus dolores inventore, eaque eveniet praesentium, ipsam hic maxime fugiat
+          ullam? Ipsum dolores, quo porro labore adipisci et laudantium, quisquam nemo, eveniet quibusdam deleniti
+          excepturi vero dolor harum dolorum sint modi fugiat vitae autem mollitia. Velit dolore quis inventore,
+          quisquam quas, fugiat harum totam iste quasi ex vel necessitatibus corrupti amet ullam recusandae consectetur
+          doloremque illum rem sunt. Labore culpa explicabo voluptatem obcaecati tempore dolores facere, aut vitae eaque
+          cupiditate mollitia ducimus, laboriosam quam officia facilis dignissimos ipsam. Enim quisquam earum corrupti
+          tenetur commodi labore.</p>
+      </div>
+    </div>
+  </main>
 
-    <footer>This is the footer.</footer>
-    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
-
-    <script src="Assets/JS/nav.js"></script>
-    <script src="Assets/JS/easteregg.js"></script>
-  </body>
+  <footer>This is the footer.</footer>
+  <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+</body>
 </html>

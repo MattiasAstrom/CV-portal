@@ -1,5 +1,3 @@
-// scripts.js
-
 document
   .getElementById("contactForm")
   .addEventListener("submit", function (event) {
@@ -10,20 +8,11 @@ document
     errorElements.forEach((el) => (el.style.display = "none"));
 
     // Get form values
-    const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
     const message = document.getElementById("message").value.trim();
 
     // Validation flags
     let isValid = true;
-
-    // Name validation
-    if (name === "") {
-      document.getElementById("nameError").textContent = "Name is required";
-      document.getElementById("nameError").style.display = "block";
-      isValid = false;
-    }
 
     // Email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,15 +20,6 @@ document
       document.getElementById("emailError").textContent =
         "Valid email is required";
       document.getElementById("emailError").style.display = "block";
-      isValid = false;
-    }
-
-    // Phone validation
-    const phonePattern = /^[0-9]{10}$/;
-    if (phone === "" || !phonePattern.test(phone)) {
-      document.getElementById("phoneError").textContent =
-        "Valid phone number is required";
-      document.getElementById("phoneError").style.display = "block";
       isValid = false;
     }
 
@@ -53,7 +33,9 @@ document
 
     // If form is valid, you can submit it or perform any other action
     if (isValid) {
-      alert("Form submitted successfully!");
-      // You can also submit the form here using AJAX or similar methods
+      alert(
+        "Doesn't have a backend to actually send the message but.. it was sent :)"
+      );
+      //here's where i'd actually send the mail.
     }
   });

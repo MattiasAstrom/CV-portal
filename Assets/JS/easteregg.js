@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0; // Track the current color in the array
-  let speed = 5000;
+  let speed = 200;
   let isPlaying = false;
   let animationFrameId; // Variable to store the requestAnimationFrame ID
   let keySequence = ""; // To track the key sequence input by the user
-  const secretCode = "1337"; // The secret code to trigger the Easter egg
+  const secretCode = "hej"; // The secret code to trigger the Easter egg
 
   // Add event listener to the button
   const changeButton = document.querySelector(".changeButton");
@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function cycleColors() {
     const body = document.querySelector("main");
-    console.log(body);
     let nextIndex = (currentIndex + 1) % rainbowColors.length; // Get the next color index
     let currentColor = rainbowColors[currentIndex];
     let nextColor = rainbowColors[nextIndex];
@@ -78,10 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetAnimation() {
-    // Reset the background color and rotation when stopped
     const body = document.querySelector(".background-homepage");
-    body.style.backgroundColor = "rgba(0, 0, 0, 0.6)"; // Initial background color
-    body.style.transform = "rotate(0deg)"; // Reset rotation to 0
+    body.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+    body.style.transform = "rotate(0deg)";
 
     currentIndex = 0;
     speed = 5000; // Reset the speed to the initial value
@@ -104,38 +102,30 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     keySequence += event.key;
 
-    // If the sequence length exceeds the secret code length, trim it
     if (keySequence.length > secretCode.length) {
       keySequence = keySequence.slice(1);
     }
 
-    // Check if the key sequence matches the secret code
     if (keySequence === secretCode) {
-      console.log("should be showing popup");
       showEasterEggModal();
     }
-    console.log(keySequence);
   });
 
-  // Function to show the modal with the fun message
   function showEasterEggModal() {
     const modal = document.createElement("div");
     modal.classList.add("modal");
-    modal.style.position = "absolute";
+    modal.style.position = "fixed";
     modal.style.top = "50%";
     modal.style.left = "50%";
     modal.style.transform = "translate(-50%, -50%)";
-    modal.style.padding = "20px";
     modal.style.backgroundColor = "#fff";
     modal.style.border = "2px solid #000";
     modal.style.zIndex = "1000";
     modal.style.display = "block";
     modal.innerHTML =
-      "<h2>Congratulations, you found the Easter egg!</h2><p>1337 is the secret code!</p>";
-
+      "<h2>Congratulations, you found the Easter egg!</h2><p>Press anywhere to close</p>";
     document.body.appendChild(modal);
 
-    // Close modal when clicked
     modal.addEventListener("click", () => {
       document.body.removeChild(modal);
     });

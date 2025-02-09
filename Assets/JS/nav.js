@@ -25,37 +25,6 @@ window.onscroll = function () {
 };
 // Load the navigation bar dynamically
 document.addEventListener("DOMContentLoaded", () => {
-  // Correctly formatted HTML string for navbar
-
-  document.getElementById("navbar-container").innerHTML = `
-    <nav class="nav">
-      <ol>
-        <li>
-          <a href="./3dgame.html" class="threed-button">3D</a>
-        </li>
-        <li>
-           <a class="changeButton"></a>
-        </li>
-        <li>
-          <a href="./index.html">Home</a>
-        </li>
-        <li>
-          <a href="./about.html">About</a>
-        </li>
-        <li>
-          <a href="./projects.html">Projects</a>
-        </li>
-        <li>
-          <a href="./cv.html">CV</a>
-        </li>
-        <li>
-          <a href="./contact.html">Contact</a>
-        </li>
-      </ol>
-    </nav>
-    
-  `;
-
   // Highlight the active page
   const currentPage = window.location.pathname.split("/").pop(); // Get the current page name (e.g., index.html)
   const links = document.querySelectorAll(".nav a");

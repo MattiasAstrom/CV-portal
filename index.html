@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="Assets/CSS/stylesheet.css" />
-    <title>Home</title>
-  </head>
 
-  <body class="grid-container content">
-    <header>
-      <!--Navbar-->
-      <div id="navbar-container"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="Assets/CSS/stylesheet.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Liter&display=swap"
+    rel="stylesheet" />
+  <script src="Assets/JS/nav.js" defer></script>
+  <script src="Assets/JS/easteregg.js" defer></script>
+  <title>Home</title>
+</head>
 
-      <!--Hamburger-->
-      <span class="openbtn" onclick="openNav()">☰</span>
-      <div id="myNav" class="overlay">
-        <a class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-          <ol id="navbar-links"></ol>
+<body class="grid-container">
+  <header>
+    <!--Navbar-->
+    <div id="navbar-container">
+      <nav class="nav">
+        <ol>
+          <li><a href="./3dgame.html" class="threed-button">3D</a></li>
+          <li><a class="changeButton"></a></li>
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./projects.html">Projects</a></li>
           <li><a href="./cv.html">CV</a></li>
           <li><a href="./contact.html">Contact</a></li>
-          </ol>
-        </div>
-      </div>
-    </header>
-    
-    <main>
-        <div class="container">
-          <h5 class="blue-out">Hello, my name is</h5>
-          <h1>Mattias Åström,</h1>
-          <h1 class="gray-out">I am a fullstack developer.</h1>
-          <p class="gray-out">
-            author of half-decent code, and a completer of tasks.
-          </p>
-        </div>
-    </main>
-    
-    <footer><p>This is a footer</p></footer>
-    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+        </ol>
+      </nav>
+    </div>
 
-    <!-- Link to the external JavaScript file -->
-    <script src="Assets/JS/nav.js"></script>
-    <script src="Assets/JS/easteregg.js"></script>
-  </body>
+    <!--Hamburger-->
+    <span class="openbtn" onclick="openNav()">☰</span>
+    <div id="myNav" class="overlay">
+      <a class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <ol id="navbar-links"></ol>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./projects.html">Projects</a></li>
+        <li><a href="./cv.html">CV</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        </ol>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <p class="blue-out">Hello, my name is</p>
+      <h1>Mattias Åström</h1>
+      <h2>I am a fullstack developer</h2>
+      <p class="blue-out">author of half-decent code, and a completer of tasks</p>
+    </div>
+  </main>
+
+  <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+  <footer>
+    <p>This is a footer</p>
+  </footer>
+</body>
+
 </html>
