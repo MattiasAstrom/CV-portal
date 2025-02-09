@@ -107,67 +107,12 @@ article {
   text-align: center;
 }
 
-/* Set up a 3D container perspective */
-.threed-button {
-  background-color: #050505c4;
-  text-align: center;
-  border-radius: 100%;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-
-  /* Add perspective to the container */
-  transform-style: preserve-3d; /* Maintain 3D transformations */
-  animation: rotateX 4s infinite linear; /* Rotate around X-axis */
-
-  position: absolute;
-  left: 1%;
-  /* Add perspective to the container */
-
-  /* Transition effects for the text */
-  transition: color 0.3s ease, font-size 0.3s ease, opacity 0.3s ease;
-}
-
-/* Keyframes to rotate the element on the X-axis */
-/* Keyframes to rotate the element on the X-axis */
-@keyframes rotateX {
-  0% {
-    transform: rotateY(0deg); /* Start from 0 degrees */
-    color: white; /* Starting text color */
-    font-size: 20px; /* Initial font size */
-  }
-  25% {
-    color: #dddcd6; /* Change color to yellow */
-    font-size: 16px; /* Shrink font size */
-  }
-  50% {
-    transform: rotateY(180deg); /* Halfway through the rotation */
-    color: #c1ebc1; /* Change color to green */
-    font-size: 20px; /* Normal font size */
-  }
-  75% {
-    color: #d3c9f5; /* Change color back to yellow */
-    font-size: 22px; /* Expand font size */
-  }
-  100% {
-    transform: rotateY(360deg); /* Full rotation */
-    color: white; /* Change back to white */
-    font-size: 20px; /* Normal font size */
-  }
-}
-
-/* Focus effect (when clicked or focused) */
-.threeD-button:focus {
-  outline: 2px solid #2196f3; /* Add outline when focused */
-  outline-offset: 2px;
-}
-
 @media (max-width: 1100px) {
   .flex-container-item {
     flex-direction: column;
     width: 100%;
-    width: 100%; /* Adjust width on smaller screens */
-    padding: 15px; /* Increase padding for better spacing in column layout */
+    width: 100%;
+    padding: 15px;
   }
 }
 /* Styles for mobile screen sizes */
@@ -230,22 +175,23 @@ img {
   color: aqua;
 }
 
-button {
-  background-color: #2e5077;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  font-size: 16px;
+.button {
   cursor: pointer;
+  background-color: rgb(250, 235, 215);
+  color: rgb(2, 2, 2);
+  padding: 10px 20px;
   border-radius: 5px;
+  font-size: 16px;
+  border: none;
   margin: 10px;
+  display: inline-block;
+  text-align: center;
 }
 
 nav button:hover {
   background-color: #575757;
 }
 
-/* Container for the projects */
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -253,39 +199,33 @@ nav button:hover {
   width: 100%;
   padding: 20px;
 }
-/* Project card styling */
+
 .flex-container-item {
   display: flex;
   align-items: center;
-  background-color: rgb(233, 123, 123);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin: 10px;
   width: 50%;
-  outline: 1px solid blue;
   transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
-/* Image section of the card */
+
 .flex-container-image {
   min-width: 50%;
   max-width: 25%;
   height: 100%;
   border-radius: 8px;
-  outline: 1px solid rgb(255, 0, 0);
 }
 
 .flex-container-item img {
   width: 200px;
   height: 100%;
   border-radius: 8px;
-  outline: 1px solid black;
 }
 
-/* Project details section */
 .flex-container-details {
   flex: 1;
   padding-left: 20px;
-  outline: 1px solid black;
 }
 
 .flex-container-details p {
@@ -300,7 +240,7 @@ nav button:hover {
   }
 }
 
-/* Tech stack section */
+/* Project Modal */
 .techstack img {
   width: 30px;
   height: 30px;
@@ -316,8 +256,6 @@ nav button:hover {
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
@@ -327,41 +265,41 @@ nav button:hover {
 }
 
 .modal-content {
-  background-color: white;
+  background-color: rgba(250, 250, 250);
   padding: 20px;
-  border-radius: 8px;
   max-width: 50%;
-  width: 80%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-items: center;
+  flex-wrap: wrap;
+}
+
+.modal-content img {
+  align-self: center;
+  max-width: 50%;
+  margin-bottom: 5%;
+}
+
+.modal-content p {
+  margin: 1%;
+}
+.modal-content label {
+  display: inline-block;
 }
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5%;
+  right: 5%;
   font-size: 30px;
   color: black;
   cursor: pointer;
 }
 
-/* Checkbox logic */
 .read-more-toggle {
   display: none;
 }
-/* Button styles */
-.read-more-button {
-  cursor: pointer;
-  background-color: #2e5077;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  border: none;
-  margin: 10px;
-  display: inline-block;
-  text-align: center;
-}
+
 .read-more-toggle:checked + .modal {
   display: flex;
 }
@@ -372,7 +310,6 @@ nav button:hover {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Optional animation for modal */
 .modal-content {
   transform: scale(0);
   opacity: 0;
@@ -380,94 +317,133 @@ nav button:hover {
   text-align: center;
 }
 
-/* Make the canvas container take the full screen */
-.fps-gameCanvas {
-  position: fixed; /* Fixed positioning to ensure it stays in place */
-  top: 0; /* Position at the top */
-  left: 0; /* Position at the left */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: #000; /* Optional: background color */
-  z-index: -1; /* Ensure canvas is behind other elements like buttons */
+/* 3D button */
+.threed-button {
+  background-color: #050505c4;
+  text-align: center;
+  border-radius: 100%;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+
+  transform-style: preserve-3d;
+  animation: rotateX 4s infinite linear;
+
+  position: absolute;
+  left: 1%;
+
+  transition: color 0.3s ease, font-size 0.3s ease, opacity 0.3s ease;
 }
 
-/* Make the canvas itself fill the container */
+@keyframes rotateX {
+  0% {
+    transform: rotateY(0deg); /* Start from 0 degrees */
+    color: white;
+    font-size: 20px;
+  }
+  25% {
+    color: #dddcd6;
+    font-size: 16px;
+  }
+  50% {
+    transform: rotateY(180deg);
+    color: #c1ebc1;
+    font-size: 20px;
+  }
+  75% {
+    color: #d3c9f5;
+    font-size: 22px;
+  }
+  100% {
+    transform: rotateY(360deg);
+    color: white;
+    font-size: 20px;
+  }
+}
+
+.threeD-button:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* 3D scene */
+.fps-gameCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: -1;
+}
+
 #webgl-canvas {
   width: 100%;
   height: 100%;
-  display: block; /* Prevents extra space at the bottom */
+  display: block;
 }
 
-/* Crosshair Styles */
 #crosshair {
   position: absolute;
-  top: 50%; /* Center horizontally */
-  left: 50%; /* Center vertically */
-  width: 20px; /* Width of the horizontal line */
-  height: 2px; /* Height of the horizontal line */
-  background-color: #ff0000; /* Red color for the crosshair */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Center it exactly at the middle of the screen */
-  z-index: 10; /* Ensure it is on top of the canvas */
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: #ff0000;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
-/* Vertical line for the crosshair */
 #crosshair::after {
   content: "";
   position: absolute;
-  top: -10px; /* Adjust this to extend the vertical line above the horizontal one */
+  top: -10px;
   left: 50%;
-  width: 2px; /* Width of the vertical line */
-  height: 20px; /* Height of the vertical line */
-  background-color: #ff0000; /* Red color for the crosshair */
+  width: 2px;
+  height: 20px;
+  background-color: #ff0000;
   transform: translateX(-50%);
 }
 
-/* Overlay */
+/* Hamburger */
 .overlay {
   height: 0;
   width: 100%;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  background-color: antiquewhite; /* Black fallback color */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  background-color: antiquewhite;
+  overflow-x: hidden;
+  transition: 0.3s;
 }
 
-/* Position the content inside the overlay */
 .overlay-content {
   position: relative;
-  top: 25%; /* 25% from the top */
-  width: 100%; /* 100% width */
-  text-align: center; /* Centered text/links */
-  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .overlay-content li {
-  list-style-type: none; /* Remove bullets */
+  list-style-type: none;
 }
 
-/* The navigation links inside the overlay */
 .overlay a {
   padding: 8px;
   text-decoration: none;
   font-size: 36px;
   color: black;
-  display: block; /* Display block instead of inline */
-  transition: 0.3s; /* Transition effects on hover (color) */
+  display: block;
+  transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
 .overlay a:hover,
 .overlay a:focus {
   color: gray;
 }
 
-/* Position the close button (top right corner) */
 .overlay .closebtn {
   color: black;
   position: absolute;
@@ -491,20 +467,18 @@ nav button:hover {
 .project-container {
   position: relative;
   display: flex;
-  max-width: 50%; /* Maximum width */
+  max-width: 50%;
   min-width: 50%;
-  margin: 1% auto; /* Center it */
-  border: 1px soild black;
+  margin: 1% auto;
   text-align: center;
   overflow-y: hidden;
 }
 
 .project-container .content {
-  position: absolute; /* Position the background text */
-  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
-  background: rgb(0, 0, 0); /* Fallback color */
-  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-  color: #f1f1f1; /* Grey text */
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
   width: 100%;
   max-height: 100%;
 }
@@ -553,26 +527,16 @@ textarea {
 .error-message {
   color: red;
   font-size: 0.875rem;
-  display: none; /* Hidden by default */
+  display: none;
 }
 
 .cv-main {
   text-align: center;
   max-width: 800px;
   margin: 20px auto;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-section {
-  margin-bottom: 20px;
-}
-
-section h2 {
-  font-size: 1.8rem;
-  border-bottom: 2px solid #333;
-  padding-bottom: 5px;
 }
 
 ul {
@@ -582,14 +546,6 @@ ul {
 
 ul li {
   margin-bottom: 5px;
-}
-
-.button {
-  background-color: antiquewhite;
-  color: rgb(2, 2, 2);
-  border: none;
-  cursor: pointer;
-  display: inline-block;
 }
 
 #print-section a {
@@ -605,9 +561,8 @@ ul li {
   margin: 15px 15px;
 }
 
-/* Print styles */
+/* Print */
 @media print {
-  /* Hide elements you don't want to print */
   body * {
     visibility: hidden;
   }
@@ -617,26 +572,22 @@ ul li {
     visibility: visible;
   }
 
-  /* Remove box shadow and any margin that may cause overflow */
   .cv-main {
     margin: 0;
     padding: 10px;
     box-shadow: none;
-    page-break-inside: avoid; /* Prevent page break inside the CV */
+    page-break-inside: avoid;
   }
 
-  /* Hide the print button when printing */
   #print-section,
   #contactButton {
     display: none;
   }
 
-  /* Prevent page break inside sections */
   section {
     page-break-inside: avoid;
   }
 
-  /* Optional: Adjust font size or margins for printing */
   .cv-main h1 {
     font-size: 2rem;
   }
@@ -650,7 +601,6 @@ ul li {
     font-size: 1rem;
   }
 
-  /* Adjust page margins to fit content better */
   @page {
     margin: 10mm;
   }
