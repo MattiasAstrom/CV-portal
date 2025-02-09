@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetAnimation() {
-    const body = document.querySelector(".background-homepage");
-    body.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+    const body = document.querySelector("main");
+    body.style.backgroundColor = "rgba(65, 195, 235, 0.438)";
 
     currentIndex = 0;
     speed = 5000;

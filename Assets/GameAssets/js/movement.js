@@ -122,29 +122,26 @@ export function checkRaycast() {
     switch (hitObject.tag) {
       case "Home":
         window.location.href = "./index.html"; // Redirect to home
-        console.log("Home hit");
+        // console.log("Home hit");
         break;
       case "About":
         window.location.href = "./about.html"; // Redirect to about
-        console.log("About hit");
-
+        // console.log("About hit");
         break;
       case "Projects":
         window.location.href = "./projects.html"; // Redirect to projects
-        console.log("Projects hit");
-
+        // console.log("Projects hit");
         break;
       case "CV":
         window.location.href = "./cv.html"; // Redirect to CV
-        console.log("CV hit");
-
+        // console.log("CV hit");
         break;
       case "Contact":
         window.location.href = "./contact.html"; // Redirect to contact
-        console.log("Contact hit");
+        // console.log("Contact hit");
         break;
       default:
-        console.log("No clue what you hit mate");
+        // console.log("No clue what you hit mate");
         break;
     }
   }
