@@ -7,26 +7,24 @@ function scrollToTop() {
 }
 
 function toggleMenu() {
-  const navbarLinks = document.getElementById("navbar-links");
+  const navbarLinks = document.querySelector("navbar-links");
   navbarLinks.classList.toggle("active");
 }
 
-// Show/Hide the "Scroll to Top" button based on scroll position
 window.onscroll = function () {
   const button = document.querySelector(".scroll-to-top");
   if (
     document.body.scrollTop > 200 ||
     document.documentElement.scrollTop > 100
   ) {
-    button.style.display = "block"; // Show button when scrolled down
+    button.style.display = "block";
   } else {
-    button.style.display = "none"; // Hide button when at the top
+    button.style.display = "none";
   }
 };
 // Load the navigation bar dynamically
 document.addEventListener("DOMContentLoaded", () => {
-  // Highlight the active page
-  const currentPage = window.location.pathname.split("/").pop(); // Get the current page name (e.g., index.html)
+  const currentPage = window.location.pathname.split("/").pop();
   const links = document.querySelectorAll(".nav a");
 
   for (const link of links) {
@@ -37,12 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* Open */
 function openNav() {
   document.getElementById("myNav").style.height = "100%";
 }
 
-/* Close */
 function closeNav() {
   document.getElementById("myNav").style.height = "0%";
 }

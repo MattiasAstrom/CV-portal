@@ -1,5 +1,5 @@
 document
-  .getElementById("contactForm")
+  .querySelector("contactForm")
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -8,8 +8,8 @@ document
     errorElements.forEach((el) => (el.style.display = "none"));
 
     // Get form values
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+    const email = document.querySelector("email").value.trim();
+    const message = document.querySelector("message").value.trim();
 
     // Validation flags
     let isValid = true;
@@ -17,17 +17,17 @@ document
     // Email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email === "" || !emailPattern.test(email)) {
-      document.getElementById("emailError").textContent =
+      document.querySelector("emailError").textContent =
         "Valid email is required";
-      document.getElementById("emailError").style.display = "block";
+      document.querySelector("emailError").style.display = "block";
       isValid = false;
     }
 
     // Message validation
     if (message === "") {
-      document.getElementById("messageError").textContent =
+      document.querySelector("messageError").textContent =
         "Message is required";
-      document.getElementById("messageError").style.display = "block";
+      document.querySelector("messageError").style.display = "block";
       isValid = false;
     }
 

@@ -1,36 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let currentIndex = 0; // Track the current color in the array
+  let currentIndex = 0;
   let speed = 200;
   let isPlaying = false;
-  let animationFrameId; // Variable to store the requestAnimationFrame ID
-  let keySequence = ""; // To track the key sequence input by the user
-  const secretCode = "hej"; // The secret code to trigger the Easter egg
+  let animationFrameId;
+  let keySequence = "";
+  const secretCode = "hej";
 
-  // Add event listener to the button
   const changeButton = document.querySelector(".changeButton");
   changeButton.addEventListener("click", changeBackground);
 
   const rainbowColors = [
     "rgba(0, 0, 0, 0.6)",
-    "rgba(255, 0, 0, 0.6)", // Red
-    "rgba(255, 127, 0, 0.6)", // Orange
-    "rgba(255, 255, 0, 0.6)", // Yellow
-    "rgba(0, 255, 0, 0.6)", // Green
-    "rgba(0, 0, 255, 0.6)", // Blue
-    "rgba(75, 0, 130, 0.6)", // Indigo
-    "rgba(238, 130, 238, 0.6)", // Violet
+    "rgba(255, 0, 0, 0.6)",
+    "rgba(255, 127, 0, 0.6)",
+    "rgba(255, 255, 0, 0.6)",
+    "rgba(0, 255, 0, 0.6)",
+    "rgba(0, 0, 255, 0.6)",
+    "rgba(75, 0, 130, 0.6)",
+    "rgba(238, 130, 238, 0.6)",
     "rgba(255, 255, 255, 0.6)",
   ];
 
   function changeBackground() {
-    // Toggle play/pause
     if (!isPlaying) {
       isPlaying = true;
-      cycleColors(); // Start the animation
+      cycleColors();
     } else {
       isPlaying = false;
-      cancelAnimationFrame(animationFrameId); // Stop the animation
-      resetAnimation(); // Reset everything to initial state when stopped
+      cancelAnimationFrame(animationFrameId);
+      resetAnimation();
     }
   }
 
@@ -47,29 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!startTime) startTime = timestamp;
 
       if (speed >= 1000) {
-        speed -= 10; // Gradually slow down the transition speed
+        speed -= 10;
       }
 
-      const progress = (timestamp - startTime) / speed; // Calculate progress
+      const progress = (timestamp - startTime) / speed;
 
-      // Lerp function to interpolate the colors
       const lerpedColor = lerpColor(
         currentColor,
         nextColor,
         Math.min(progress, 1)
       );
 
-      // Apply the lerped color
       body.style.setProperty("--overlay-color", lerpedColor);
 
       if (progress < 1) {
-        // Continue animating if the animation is still playing
         if (isPlaying) {
           animationFrameId = requestAnimationFrame(animateColorTransition);
         }
       } else {
-        currentIndex = nextIndex; // Move to the next color in the array
-        setTimeout(cycleColors, 1); // Delay before next transition (1 second)
+        currentIndex = nextIndex;
+        setTimeout(cycleColors, 1);
       }
     }
 
@@ -79,10 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function resetAnimation() {
     const body = document.querySelector(".background-homepage");
     body.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-    body.style.transform = "rotate(0deg)";
 
     currentIndex = 0;
-    speed = 5000; // Reset the speed to the initial value
+    speed = 5000;
   }
 
   // Helper function to interpolate between two colors
