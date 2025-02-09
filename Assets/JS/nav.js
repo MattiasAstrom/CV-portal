@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   links.forEach((link) => {
     // Check if the link's href matches the current page
     if (link.href.includes(currentPage)) {
+      console.log(currentPage);
       link.classList.add("active"); // Add 'active' class to the current page's link
     }
   });
