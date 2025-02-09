@@ -295,7 +295,9 @@ nav button:hover {
   color: black;
   cursor: pointer;
 }
-
+.modal-content h2 {
+  text-decoration: underline;
+}
 .read-more-toggle {
   display: none;
 }
